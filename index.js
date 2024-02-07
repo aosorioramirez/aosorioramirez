@@ -34,7 +34,10 @@ const canvas = document.getElementById('three-canvas');
 const loader = new TextureLoader();
 
 const geometry = new BoxGeometry(0.5,0.5,0.5);
-const greenMaterial = new MeshBasicMaterial({color:'green'});
+const greenMaterial = new MeshBasicMaterial({
+    color:'white',
+    map: loader.load('./sample2.jpg')
+});
 const yellowMaterial = new MeshLambertMaterial ({
     color: 0xffffff,
     map: loader.load('./sample.png')
