@@ -18,7 +18,8 @@ import {
     MathUtils,
     Clock,
     MeshLambertMaterial,
-    DirectionalLight
+    DirectionalLight,
+    TextureLoader
 } from 'three';
 
 import CameraControls from 'camera-controls';
@@ -30,9 +31,14 @@ const canvas = document.getElementById('three-canvas');
 
 // 2 The Geometry
 
+const loader = new TextureLoader();
+
 const geometry = new BoxGeometry(0.5,0.5,0.5);
 const greenMaterial = new MeshBasicMaterial({color:'green'});
-const yellowMaterial = new MeshLambertMaterial ({color:'yellow'})
+const yellowMaterial = new MeshLambertMaterial ({
+    color: 0xffffff,
+    map: loader.load('./sample.png')
+});
 
 const greenCube = new Mesh(geometry,greenMaterial);
 scene.add(greenCube);
@@ -57,7 +63,7 @@ renderer.setSize(canvas.clientWidth,canvas.clientHeight,false);
 // 5 Lights
 
 const light = new DirectionalLight();
-light.position.set(1,1,1).normalize();
+light.position.set(0.5,0.65,1).normalize();
 scene.add(light);
 
 // 6 Responsivity
