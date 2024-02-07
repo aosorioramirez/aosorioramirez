@@ -30315,25 +30315,32 @@ if ( typeof window !== 'undefined' ) {
 
 //1 The Scene
 const scene = new Scene();
+const canvas = document.getElementById('three-canvas');
+
 //2 The Geometry
 const geometry = new BoxGeometry(0.5,0.5,0.5);
 const material = new MeshBasicMaterial({color:'orange'});
-const mesh =new Mesh(geometry,material);
+const mesh = new Mesh(geometry,material);
 scene.add(mesh);
+
 //3 The Camera
-const sizes = {
-    width: 800,
-    height: 600
-};
-const camera = new PerspectiveCamera(75, sizes.width / sizes.height);
+const camera = new PerspectiveCamera(75, canvas.clientWidth / canvas.clientHeight);
 camera.position.z = 3;
 scene.add(camera);
-//4 The Renderer
-const canvas = document.getElementById('three-canvas');
-const renderer = new WebGLRenderer({canvas:canvas});
-renderer.setSize(sizes.width,sizes.height);
-renderer.render(scene,camera);
 
+//4 The Renderer
+const renderer = new WebGLRenderer({canvas:canvas});
+renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
+renderer.setSize(canvas.clientWidth,canvas.clientHeight,false);
+
+//5 Responsivity
+window.addEventListener('resize', () => {
+    camera.aspect = canvas.clientWidth / canvas.clientHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(canvas.clientWidth, canvas.clientHeight, false);
+});
+
+//6 Animation
 function animationCube() {
     mesh.rotation.x += 0.01;
     mesh.rotation.z += 0.01;
