@@ -13,6 +13,7 @@
   "author": "AOR",
   "license": "MIT",
   "dependencies": {
+    "camera-controls": "^2.7.4",
     "three": "^0.160.1"
   },
   "devDependencies": {
