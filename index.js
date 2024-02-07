@@ -16,7 +16,9 @@ import {
     Sphere,
     Raycaster,
     MathUtils,
-    Clock
+    Clock,
+    MeshLambertMaterial,
+    DirectionalLight
 } from 'three';
 
 import CameraControls from 'camera-controls';
@@ -29,9 +31,16 @@ const canvas = document.getElementById('three-canvas');
 // 2 The Geometry
 
 const geometry = new BoxGeometry(0.5,0.5,0.5);
-const material = new MeshBasicMaterial({color:'green'});
-const mesh = new Mesh(geometry,material);
-scene.add(mesh);
+const greenMaterial = new MeshBasicMaterial({color:'green'});
+const yellowMaterial = new MeshLambertMaterial ({color:'yellow'})
+
+const greenCube = new Mesh(geometry,greenMaterial);
+scene.add(greenCube);
+
+const yellowCube = new Mesh(geometry, yellowMaterial);
+yellowCube.position.x += 1;
+yellowCube.scale.set(0.75,0.75,0.75);
+scene.add(yellowCube);
 
 // 3 The Camera
 
@@ -45,7 +54,13 @@ const renderer = new WebGLRenderer({canvas:canvas});
 renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
 renderer.setSize(canvas.clientWidth,canvas.clientHeight,false);
 
-// 5 Responsivity
+// 5 Lights
+
+const light = new DirectionalLight();
+light.position.set(1,1,1).normalize();
+scene.add(light);
+
+// 6 Responsivity
 
 window.addEventListener('resize', () => {
     camera.aspect = canvas.clientWidth / canvas.clientHeight;
@@ -53,7 +68,7 @@ window.addEventListener('resize', () => {
     renderer.setSize(canvas.clientWidth, canvas.clientHeight, false);
 });
 
-// 6 Camera-Controls
+// 7 Camera-Controls
 
 const subsetOfTHREE = {
     MOUSE,
@@ -77,7 +92,7 @@ const clock = new Clock();
 const cameraControls = new CameraControls(camera, canvas);
 cameraControls.dollyToCursor = true;
 
-// 7 Animation
+// 8 Animation
 
 function animate() {
     const delta = clock.getDelta();
