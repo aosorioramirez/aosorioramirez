@@ -20,7 +20,9 @@ import {
     MeshLambertMaterial,
     DirectionalLight,
     TextureLoader,
-    AmbientLight
+    AmbientLight,
+    AxesHelper,
+    GridHelper
 } from 'three';
 
 import CameraControls from 'camera-controls';
@@ -29,6 +31,16 @@ import CameraControls from 'camera-controls';
 
 const scene = new Scene();
 const canvas = document.getElementById('three-canvas');
+
+const axes = new AxesHelper(0.2);
+axes.material.depthTest = false;
+axes.renderOrder = 2;
+scene.add(axes);
+
+const grid = new GridHelper( 2 , 10 , 'gray');
+grid.material.depthTest = false;
+grid.render = 1;
+scene.add(grid);
 
 // 2 The Geometry
 
