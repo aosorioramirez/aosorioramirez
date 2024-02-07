@@ -19,7 +19,8 @@ import {
     Clock,
     MeshLambertMaterial,
     DirectionalLight,
-    TextureLoader
+    TextureLoader,
+    AmbientLight
 } from 'three';
 
 import CameraControls from 'camera-controls';
@@ -68,6 +69,8 @@ renderer.setSize(canvas.clientWidth,canvas.clientHeight,false);
 const light = new DirectionalLight();
 light.position.set(0.5,0.65,1).normalize();
 scene.add(light);
+const ambientLight = new AmbientLight('white', 0.1);
+scene.add(ambientLight);
 
 // 6 Responsivity
 

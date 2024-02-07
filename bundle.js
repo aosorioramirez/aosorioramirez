@@ -31217,6 +31217,20 @@ class DirectionalLight extends Light {
 
 }
 
+class AmbientLight extends Light {
+
+	constructor( color, intensity ) {
+
+		super( color, intensity );
+
+		this.isAmbientLight = true;
+
+		this.type = 'AmbientLight';
+
+	}
+
+}
+
 class Clock {
 
 	constructor( autoStart = true ) {
@@ -34142,6 +34156,8 @@ renderer.setSize(canvas.clientWidth,canvas.clientHeight,false);
 const light = new DirectionalLight();
 light.position.set(0.5,0.65,1).normalize();
 scene.add(light);
+const ambientLight = new AmbientLight('white', 0.1);
+scene.add(ambientLight);
 
 // 6 Responsivity
 
