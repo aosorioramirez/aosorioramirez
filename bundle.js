@@ -44027,11 +44027,9 @@ scene.add(grid);
 const loader = new GLTFLoader();
 
 
-loader.load('./samurai_arena_building.glb',
+loader.load('samurai_arena_building.glb',
 (gltf) => {
     const model = gltf.scene;
-    model.position.setX(-30);
-    model.rotation.y += 45;
     scene.add(model);
 },
 
@@ -44042,7 +44040,6 @@ loader.load('./samurai_arena_building.glb',
 (error) => {
     console.log(error);
 });
-
 
 // 3 The Camera
 

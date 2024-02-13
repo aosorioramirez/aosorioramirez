@@ -33,7 +33,6 @@ import CameraControls from 'camera-controls';
 import GUI from "three/examples/jsm/libs/lil-gui.module.min.js";
 
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
-import { degToRad } from 'three/src/math/MathUtils';
 
 // 1 The Scene
 
@@ -56,7 +55,7 @@ scene.add(grid);
 const loader = new GLTFLoader();
 
 
-loader.load('./samurai_arena_building.glb',
+loader.load('samurai_arena_building.glb',
 (gltf) => {
     const model = gltf.scene;
     scene.add(model);
