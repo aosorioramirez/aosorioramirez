@@ -22,10 +22,18 @@ import {
     TextureLoader,
     AmbientLight,
     AxesHelper,
-    GridHelper
+    GridHelper,
+    EdgesGeometry,
+    LineSegments,
+    Color
 } from 'three';
 
 import CameraControls from 'camera-controls';
+
+import GUI from "three/examples/jsm/libs/lil-gui.module.min.js";
+
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { degToRad } from 'three/src/math/MathUtils';
 
 // 1 The Scene
 
@@ -42,27 +50,25 @@ grid.material.depthTest = false;
 grid.render = 1;
 scene.add(grid);
 
-// 2 The Geometry
 
-const loader = new TextureLoader();
+// 2 The Geometry / Object
 
-const geometry = new BoxGeometry(0.5,0.5,0.5);
-const greenMaterial = new MeshBasicMaterial({
-    color:'white',
-    map: loader.load('./sample2.jpg')
+const loader = new GLTFLoader();
+
+
+loader.load('./samurai_arena_building.glb',
+(gltf) => {
+    const model = gltf.scene;
+    scene.add(model);
+},
+
+(progress) => {
+    console.log(progress);
+},
+
+(error) => {
+    console.log(error);
 });
-const yellowMaterial = new MeshLambertMaterial ({
-    color: 0xffffff,
-    map: loader.load('./sample.png')
-});
-
-const greenCube = new Mesh(geometry,greenMaterial);
-scene.add(greenCube);
-
-const yellowCube = new Mesh(geometry, yellowMaterial);
-yellowCube.position.x += 1;
-yellowCube.scale.set(0.75,0.75,0.75);
-scene.add(yellowCube);
 
 // 3 The Camera
 
@@ -75,13 +81,14 @@ scene.add(camera);
 const renderer = new WebGLRenderer({canvas:canvas});
 renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
 renderer.setSize(canvas.clientWidth,canvas.clientHeight,false);
+renderer.setClearColor('white');
 
 // 5 Lights
 
 const light = new DirectionalLight();
 light.position.set(0.5,0.65,1).normalize();
 scene.add(light);
-const ambientLight = new AmbientLight('white', 0.1);
+const ambientLight = new AmbientLight('white', 3);
 scene.add(ambientLight);
 
 // 6 Responsivity
@@ -125,6 +132,10 @@ function animate() {
     requestAnimationFrame(animate);
 }
 animate();
+
+// 9 Debugging
+
+const gui = new GUI();
 
 
 const index = document.querySelector(".buttonIndex");
