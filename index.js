@@ -54,11 +54,15 @@ scene.add(grid);
 
 const loader = new GLTFLoader();
 
+const loadingScreen = document.getElementById('container-spinner');
 
 loader.load('samurai_arena_building.glb',
+
 (gltf) => {
     const model = gltf.scene;
+    model.position.setX(-25);
     scene.add(model);
+    loadingScreen.classList.add('hidden');
 },
 
 (progress) => {
@@ -79,8 +83,8 @@ scene.add(camera);
 
 const renderer = new WebGLRenderer({canvas:canvas});
 renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
-renderer.setSize(canvas.clientWidth,canvas.clientHeight,false);
-renderer.setClearColor('white');
+renderer.setSize(canvas.clientWidth,canvas.clientHeight, false);
+renderer.setClearColor(0xffffff);
 
 // 5 Lights
 
@@ -121,6 +125,8 @@ CameraControls.install( { THREE: subsetOfTHREE } );
 const clock = new Clock();
 const cameraControls = new CameraControls(camera, canvas);
 cameraControls.dollyToCursor = true;
+
+cameraControls.setLookAt(20,5,20,0,0,12);
 
 // 8 Animation
 
@@ -228,6 +234,11 @@ for (const proyecto of nombresProyectos){
    const text = document.createElement("h3");
    
    text.classList.add("cadaProyecto");
+
+   text.onclick = function (){
+        location.href = "loader.html";
+        //location.href = "loader"+ nombresProyectos.index+".html"; 
+    }
 
    text.textContent = proyecto.name;
    proyectos.appendChild(text);

@@ -18,7 +18,7 @@ iframe {
     height: 30px;
     font-size: 50px;
     background-color: rgba(255, 255, 255, 0);
-    position: sticky;
+    position: fixed;
     padding: 5px;
     margin: auto;
     float: left;
@@ -221,23 +221,51 @@ iframe {
     transform: scale(0.95) rotateZ(1.7deg);
   }
 
-#three-canvas {
+.container-canvas{
+    display: block;
     position: absolute;
-    align-items: center;
-    height: 600px;
-    width: 100vw;
+    margin-top: 10px;
+    width: 95%;
+    text-align: center;
+    justify-content: center;
+    z-index: -5;
+}
+
+#three-canvas {
+    border: 2px solid rgb(225, 225, 225);
+    width: 100%;
     outline: none;
+    height: 600px;
+}
+
+.explicacionProyecto {
+    border: 2px solid rgb(160, 131, 167);
+}
+
+#container-spinner {
+    background-color: white;
+    border: 2px solid rgb(225, 225, 225);
+    height: 600px;
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    
+}
+
+.hidden {
+    visibility: collapse;
 }
 
 .spinner {
     position: relative;
+    display: flex;
     width: 60px;
     height: 60px;
     border-radius: 50%;
    }
    
    .spinner::before,
-   .spinner:after {
+   .spinner::after {
     content: "";
     position: absolute;
     border-radius: inherit;
