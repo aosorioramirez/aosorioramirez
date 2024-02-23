@@ -25,6 +25,7 @@ iframe {
     text-align: left;
     left: 1rem;
     top: 1rem;
+    z-index: 10;
 }
 #logo:hover {
     cursor: pointer;
@@ -89,7 +90,6 @@ iframe {
     width: auto;
     display: block;
     margin-top: -135px;
-    border: 1px solid red;
 }
 
 .image {
@@ -139,18 +139,15 @@ iframe {
     .containerCartas {
         float: left; 
         width: 85%;
-        border: solid 2px rgb(255, 0, 0);
     }
 
     .containerOsitos {
         position: static;
-        border: solid 2px rgb(255, 0, 0);
         width: 10%;
         float: right;
     }
 
     .cadaCarta {
-        border: 1px solid rgb(7, 255, 15);
         display: block;
         cursor: pointer;        
     }
@@ -159,7 +156,6 @@ iframe {
     }
 
     .cadaOsito {
-        border: 1px solid rgb(0, 13, 255);
         vertical-align: text-bottom;
         text-align: center;
         font-size: 3.35rem;
@@ -186,8 +182,11 @@ iframe {
 .containerProyecto {
     width: 100%;
     min-height: fit-content;
-    border: solid 2px black;
-    align-items: center;
+}
+
+.proyectos {
+    display: block;
+    text-align: center;
 }
 
 .cadaProyecto {
@@ -221,35 +220,54 @@ iframe {
     transform: scale(0.95) rotateZ(1.7deg);
   }
 
-.container-canvas{
-    display: block;
-    position: absolute;
-    margin-top: 10px;
-    width: 95%;
-    text-align: center;
-    justify-content: center;
+  
+#file-input{
+    position: fixed;
+    float: right;
+    z-index: 1;
+}
+
+.flexBlock {
+    width: 95vw;
+    border: 1px solid rgba(255, 255, 255, 0);
+    background-color: rgb(255, 255, 255);
+    margin-right: 5vw;
+    margin-top: -4px;
+    margin-left: 0vw;
     z-index: -5;
 }
 
 #three-canvas {
-    border: 2px solid rgb(225, 225, 225);
-    width: 100%;
-    outline: none;
+    /* border: 2px solid rgb(225, 225, 225); */
+    position: fixed;
     height: 600px;
+    z-index: 0;
 }
 
-.explicacionProyecto {
-    border: 2px solid rgb(160, 131, 167);
+#nombreProyecto {
+    position: fixed;
+    text-align: center;
+    margin-top: 565px;
+    z-index: 0;
+    background-color: rgba(255, 255, 255, 0.137);
+    backdrop-filter: blur(1px);
+    font-family: 'Courier New', Courier, monospace;
+}
+
+#explicacionProyecto {
+    margin-top: 650px;
+    z-index: 0;
+    align-content: center;
+    text-align: justify;
 }
 
 #container-spinner {
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.125);
     border: 2px solid rgb(225, 225, 225);
     height: 600px;
     display: flex;
     justify-items: center;
-    align-items: center;
-    
+    align-items: center;    
 }
 
 .hidden {

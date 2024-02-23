@@ -3,7 +3,7 @@
   "name": "example-project",
   "version": "0.0.1",
   "description": "This is an example",
-  "main": "index.js",
+  "main": "model-viewer.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "rollup -c",
@@ -13,11 +13,10 @@
   "author": "AOR",
   "license": "MIT",
   "dependencies": {
-    "camera-controls": "^2.7.4",
-    "three": "^0.160.1"
+    "web-ifc-three": "^0.0.117"
   },
   "devDependencies": {
-    "@rollup/plugin-node-resolve": "^15.2.3",
-    "rollup": "^4.9.6"
+    "@rollup/plugin-node-resolve": "^13.0.2",
+    "rollup": "^2.45.2"
   }
 }

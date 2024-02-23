@@ -1,148 +1,3 @@
-import {
-    Scene,
-    BoxGeometry,
-    MeshBasicMaterial,
-    Mesh,
-    PerspectiveCamera,
-    WebGLRenderer,
-    MOUSE,
-    Vector2,
-    Vector3,
-    Vector4,
-    Quaternion,
-    Matrix4,
-    Spherical,
-    Box3,
-    Sphere,
-    Raycaster,
-    MathUtils,
-    Clock,
-    MeshLambertMaterial,
-    DirectionalLight,
-    TextureLoader,
-    AmbientLight,
-    AxesHelper,
-    GridHelper,
-    EdgesGeometry,
-    LineSegments,
-    Color
-} from 'three';
-
-import CameraControls from 'camera-controls';
-
-import GUI from "three/examples/jsm/libs/lil-gui.module.min.js";
-
-import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
-
-// 1 The Scene
-
-const scene = new Scene();
-const canvas = document.getElementById('three-canvas');
-
-const axes = new AxesHelper(0.2);
-axes.material.depthTest = false;
-axes.renderOrder = 2;
-scene.add(axes);
-
-const grid = new GridHelper( 2 , 10 , 'gray');
-grid.material.depthTest = false;
-grid.render = 1;
-scene.add(grid);
-
-
-// 2 The Geometry / Object
-
-const loader = new GLTFLoader();
-
-const loadingScreen = document.getElementById('container-spinner');
-
-loader.load('samurai_arena_building.glb',
-
-(gltf) => {
-    const model = gltf.scene;
-    model.position.setX(-25);
-    scene.add(model);
-    loadingScreen.classList.add('hidden');
-},
-
-(progress) => {
-    console.log(progress);
-},
-
-(error) => {
-    console.log(error);
-});
-
-// 3 The Camera
-
-const camera = new PerspectiveCamera(75, canvas.clientWidth / canvas.clientHeight);
-camera.position.z = 3;
-scene.add(camera);
-
-// 4 The Renderer
-
-const renderer = new WebGLRenderer({canvas:canvas});
-renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
-renderer.setSize(canvas.clientWidth,canvas.clientHeight, false);
-renderer.setClearColor(0xffffff);
-
-// 5 Lights
-
-const light = new DirectionalLight();
-light.position.set(0.5,0.65,1).normalize();
-scene.add(light);
-const ambientLight = new AmbientLight('white', 3);
-scene.add(ambientLight);
-
-// 6 Responsivity
-
-window.addEventListener('resize', () => {
-    camera.aspect = canvas.clientWidth / canvas.clientHeight;
-    camera.updateProjectionMatrix();
-    renderer.setSize(canvas.clientWidth, canvas.clientHeight, false);
-});
-
-// 7 Camera-Controls
-
-const subsetOfTHREE = {
-    MOUSE,
-    Vector2,
-    Vector3,
-    Vector4,
-    Quaternion,
-    Matrix4,
-    Spherical,
-    Box3,
-    Sphere,
-    Raycaster,
-    MathUtils: {
-      DEG2RAD: MathUtils.DEG2RAD,
-      clamp: MathUtils.clamp
-    }
-};
-
-CameraControls.install( { THREE: subsetOfTHREE } );
-const clock = new Clock();
-const cameraControls = new CameraControls(camera, canvas);
-cameraControls.dollyToCursor = true;
-
-cameraControls.setLookAt(20,5,20,0,0,12);
-
-// 8 Animation
-
-function animate() {
-    const delta = clock.getDelta();
-    cameraControls.update( delta );
-    renderer.render( scene, camera );
-    requestAnimationFrame(animate);
-}
-animate();
-
-// 9 Debugging
-
-const gui = new GUI();
-
-
 const index = document.querySelector(".buttonIndex");
 
 (window).scroll(function(){
@@ -169,11 +24,11 @@ const nombresProyectos = [
     {'name': "TFM ESTRUCTURAS",'number': "2"},
     {'name': "LÁMPARA FUENTE",'number': "3"},
     {'name': "MESA FLOTANTE",'number': "4"},
-    {'name': "MACETERO CEMENTO HECHA DE PUTA MADRE",'number': "5"}
+    {'name': "MACETERO CEMENTO",'number': "5"}
 ]
 
+
 const simboloCruz = (Array(nombresEspecialidades.length).fill("🐻"));
-//🖕
 
 function showSlides(){
     let i;
@@ -230,22 +85,26 @@ for (const cruz of simboloCruz){
 }
 
 const proyectos = document.querySelector(".containerProyecto");
+
 for (const proyecto of nombresProyectos){
-   const text = document.createElement("h3");
    
-   text.classList.add("cadaProyecto");
+    //Crea una nueva carta y le pone el class
+    const text = document.createElement("h3");
+    text.classList.add("cadaProyecto");
 
-   text.onclick = function (){
+    //Pone el nombre del proyecto
+    text.textContent = proyecto.name;
+    proyectos.appendChild(text);
+
+    
+    text.onclick = function (){
         location.href = "loader.html";
-        //location.href = "loader"+ nombresProyectos.index+".html"; 
-    }
+    };
+    text.addEventListener("click", function(){
+        text.classList.add("currentProject");
+    });
 
-   text.textContent = proyecto.name;
-   proyectos.appendChild(text);
+    text.removeEventListener("click", function(){
+        text.classList.add("currentProject");
+    });
 }
-
-
-
-
-
-
