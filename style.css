@@ -223,46 +223,50 @@ iframe {
   
 #file-input{
     position: fixed;
+    top: 0;
     float: right;
     z-index: 1;
+    user-select: none;
 }
 
-.flexBlock {
+.width {
     width: 95vw;
-    border: 1px solid rgba(255, 255, 255, 0);
-    background-color: rgb(255, 255, 255);
-    margin-right: 5vw;
-    margin-top: -4px;
     margin-left: 0vw;
-    z-index: -5;
+    margin-right: 5vw;
+    user-select: none;
+    position: relative;
 }
 
 #three-canvas {
-    /* border: 2px solid rgb(225, 225, 225); */
     position: fixed;
-    height: 600px;
+    top: 0;
+    background-color: rgb(255, 255, 255);
+    height: 500px;
     z-index: 0;
 }
 
-#nombreProyecto {
+.nombreProyecto {
     position: fixed;
-    text-align: center;
-    margin-top: 565px;
-    z-index: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(255, 255, 255);
+    height: 50px;
+    margin-top: 442px;
+    z-index: 1;
     background-color: rgba(255, 255, 255, 0.137);
     backdrop-filter: blur(1px);
     font-family: 'Courier New', Courier, monospace;
 }
 
-#explicacionProyecto {
-    margin-top: 650px;
-    z-index: 0;
-    align-content: center;
+.container-explicacion {
+    position: absolute;
     text-align: justify;
+    z-index: -2;
+    top: 510px;
 }
 
 #container-spinner {
-    background-color: rgba(255, 255, 255, 0.125);
     border: 2px solid rgb(225, 225, 225);
     height: 600px;
     display: flex;

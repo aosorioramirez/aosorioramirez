@@ -110,13 +110,6 @@ window.addEventListener("resize", () => {
     } return;
 });
 
-function widthResizer() {
-    const windowX = window.innerWidth;
-    console.log(windowX);
-}
-
-window.addEventListener('resize', widthResizer);
-
 
 
 // IFC Loading
@@ -125,7 +118,7 @@ const ifcLoader = new IFCLoader();
 
 ifcLoader.ifcManager.setupThreeMeshBVH( computeBoundsTree, disposeBoundsTree, acceleratedRaycast);
   
-ifcLoader.ifcManager.applyWebIfcConfig({COORDINATE_TO_ORIGIN: true});
+// ifcLoader.ifcManager.applyWebIfcConfig({COORDINATE_TO_ORIGIN: true});
 
 // const excludedCats = [
 //     WEBIFC.IFCMASS
@@ -135,32 +128,32 @@ ifcLoader.ifcManager.applyWebIfcConfig({COORDINATE_TO_ORIGIN: true});
 //     ifcLoader.ifcManager.excludeCats.add(cat);
 // }
 
-const geometrybox = new BoxGeometry(1, 1, 1);
-const material = new MeshPhongMaterial( {color: '#00ff66'} );
+// const geometrybox = new BoxGeometry(1, 1, 1);
+// const material = new MeshPhongMaterial( {color: '#00ff66'} );
 
-const cubeMesh = new Mesh( geometrybox, material );
-scene.add( cubeMesh );
+// const cubeMesh = new Mesh( geometrybox, material );
+// scene.add( cubeMesh );
 
 
 
 const ifcModels = [];
 
-const input = document.getElementById("file-input");
-input.addEventListener(
-      "change",
-      async (changed) => {
-          const ifcURL = URL.createObjectURL(changed.target.files[0]);
-          const model = await ifcLoader.loadAsync(ifcURL);
-          scene.add(model);
-          ifcModels.push(model);
-      },
-      false
-);
+// const input = document.getElementById("file-input");
+// input.addEventListener(
+//       "change",
+//       async (changed) => {
+//           const ifcURL = URL.createObjectURL(changed.target.files[0]);
+//           const model = await ifcLoader.loadAsync(ifcURL);
+//           scene.add(model);
+//           ifcModels.push(model);
+//       },
+//       false
+// );
 
 async function loadIfc() {
-	const ifcLoader = new IFCLoader();
 	const autoModel = await ifcLoader.loadAsync("./loaders/01.ifc");
-	scene.add(autoModel);
+    scene.add(autoModel);
+    ifcModels.push(autoModel);
 }
 
 loadIfc();
