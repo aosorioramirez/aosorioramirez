@@ -1,0 +1,208 @@
+/*Para todo el proeycto*/
+* {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  box-sizing: border-box;
+}
+
+#logo {
+  width: 400px;
+  height: 30px;
+  font-size: 50px;
+  background-color: rgba(255, 255, 255, 0);
+  position: fixed;
+  padding: 5px;
+  margin: auto;
+  float: left;
+  text-align: left;
+  left: 1rem;
+  top: 1rem;
+  z-index: 10;
+}
+#logo:hover {
+  cursor: pointer;
+  animation-name: estira;
+}
+#mueve:hover {
+  animation-name: estira 0.5s;
+}
+
+@keyframes estira {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.2);
+  }
+}
+
+#file-input {
+  position: fixed;
+  top: 0;
+  float: right;
+  z-index: 1;
+  user-select: none;
+}
+
+.width {
+  width: 95vw;
+  margin-left: 0vw;
+  margin-right: 5vw;
+  user-select: none;
+  position: relative;
+}
+
+#three-canvas {
+  position: fixed;
+  top: 0;
+  background-color: rgb(255, 255, 255);
+  height: 500px;
+  z-index: 0;
+}
+
+.nombreProyecto {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(255, 255, 255);
+  height: 50px;
+  margin-top: 442px;
+  z-index: 1;
+  background-color: rgba(255, 255, 255, 0.137);
+  backdrop-filter: blur(1px);
+  font-family: "Courier New", Courier, monospace;
+}
+
+.container-explicacion {
+  position: absolute;
+  text-align: justify;
+  z-index: -2;
+  top: 510px;
+}
+
+.hidden {
+  visibility: collapse;
+}
+
+#container-spinner {
+  pointer-events: none;
+  background-color: white;
+  height: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+}
+
+.spinner {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}
+
+.spinner::before,
+.spinner::after {
+  content: "";
+  position: absolute;
+  border-radius: inherit;
+}
+
+.spinner:before {
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(0deg, #ff00cc 0%, #333399 100%);
+  animation: spin8932 0.5s infinite linear;
+}
+
+.spinner:after {
+  width: 85%;
+  height: 85%;
+  background-color: #212121;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@keyframes spin8932 {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+#progress-text {
+  padding: 20px;
+  position: relative;
+  top: 3rem;
+}
+
+
+
+/* IFC TREE */
+
+#ifc-tree-menu {
+    position: absolute;
+    overflow-y: scroll;
+    float: right;
+    right: 0;
+    background-color: white;
+    top: 0px;
+    width: 250px;
+    margin-top: 150px;
+    height: 100vh;
+    padding: 1rem;
+}
+
+/* Remove default bullets */
+ul,
+#myUL {
+  list-style-type: none;
+}
+
+/* Remove margins and padding from the parent ul */
+#myUL {
+  margin: 0;
+  padding: 0;
+}
+
+/* Style the caret/arrow */
+.caret {
+  cursor: pointer;
+  user-select: none; /* Prevent text selection */
+}
+
+/* Create the caret/arrow with a unicode, and style it */
+.caret::before {
+  content: "\25B6";
+  color: black;
+  display: inline-block;
+  margin-right: 6px;
+}
+
+/* Rotate the caret/arrow icon when clicked on (using JavaScript) */
+.caret-down::before {
+  transform: rotate(90deg);
+}
+
+/* Hide the nested list */
+.nested {
+  display: none;
+  margin-left: 0.5rem;
+}
+
+/* Show the nested list when the user clicks on the caret/arrow (with JavaScript) */
+.active {
+  display: block;
+}
+
+.checkboxes {
+  position: absolute;
+  background-color: white;
+  padding: 10px;
+  top: 0rem;
+  right: 1rem;
+  outline: none;
+
+}
+

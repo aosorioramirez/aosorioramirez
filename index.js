@@ -1,28 +1,24 @@
-const index = document.querySelector(".buttonIndex");
+const index = document.getElementById("indexContainer");
 
-(window).scroll(function(){
-    if($(this).scrollTop() > 200){
-      $('.buttonIndex').css({'display': 'none'});
-    }
-});
+window.onscroll = function() {
+    var currentScrollY = window.scrollY;
+    if (currentScrollY > 500) {index.classList.add('hidden')
+    }else {index.classList.remove('hidden')}
+}
 
-//window.scroll(function ocultarIndice() {
-//    if(index.scrollTop()>200){
-//        index.style.display = "none";
-//    }
-//}
+
 
 const nombresEspecialidades = [
-    "ESPECIALISTA BIM",
-    "REVIT",
+    "CONOCIMIENTOS Y HABILIDADES",
+    "SOBRE MÍ",
     "GRASSHOPPER",
     "DYNAMO"
 ]
 
 const nombresProyectos = [
-    {'name': "CASA REFUGIO",'number': "1"},
-    {'name': "TFM ESTRUCTURAS",'number': "2"},
-    {'name': "LÁMPARA FUENTE",'number': "3"},
+    {'name': "TFM: ESTRUCTURAS TENSEGRITY",'number': "1"},
+    {'name': "TFM: ESTRUCTURAS HINCHABLES",'number': "2"},
+    {'name': "TFM: PARABOLOIDES HORMIGÓN",'number': "3"},
     {'name': "MESA FLOTANTE",'number': "4"},
     {'name': "MACETERO CEMENTO",'number': "5"}
 ]
@@ -98,7 +94,7 @@ for (const proyecto of nombresProyectos){
 
     
     text.onclick = function (){
-        location.href = "loader.html";
+        location.href = "obj loader/3dm-viewer.html";
     };
     text.addEventListener("click", function(){
         text.classList.add("currentProject");

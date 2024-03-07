@@ -1,316 +1,327 @@
 /*Para todo el proeycto*/
 * {
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    box-sizing: border-box;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  box-sizing: border-box;
+  background-color: rgb(255, 255, 255);
 }
 
 .encabezadoIframe {
-    text-align: center;
+  text-align: center;
 }
 iframe {
-    width: 70vw;
-    height: 70vh;
-    overflow: hidden;
+  width: 70vw;
+  height: 70vh;
+  overflow: hidden;
 }
 
 #logo {
-    width: 400px;
-    height: 30px;
-    font-size: 50px;
-    background-color: rgba(255, 255, 255, 0);
-    position: fixed;
-    padding: 5px;
-    margin: auto;
-    float: left;
-    text-align: left;
-    left: 1rem;
-    top: 1rem;
-    z-index: 10;
+  width: 400px;
+  filter: invert(1);
+  mix-blend-mode: difference;
+  height: 30px;
+  font-size: 50px;
+  background-color: rgba(255, 255, 255, 0);
+  position: fixed;
+  padding: 5px;
+  margin: auto;
+  float: left;
+  text-align: left;
+  left: 1rem;
+  top: 1rem;
+  z-index: 10;
 }
 #logo:hover {
-    cursor: pointer;
-    animation-name: estira;
+  cursor: pointer;
+  animation-name: estira;
 }
 #mueve:hover {
-    animation-name: estira 0.5s;
+  animation-name: estira 0.5s;
 }
 
 @keyframes estira {
-    0% {
-        transform: scale(1);
-    }
-    100% {
-        transform: scale(1.2);
-    }    
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.2);
+  }
 }
 
 #indexContainer {
-    border: 0px solid black;
-    position: sticky;
-    right: 5rem;
-    top: 2rem;
-    width: 150px;
-    height: fit-content;
-    float: right;
-    text-align: center;
+  border: 0px solid black;
+  position: sticky;
+  right: 5rem;
+  top: 2rem;
+  width: 150px;
+  height: fit-content;
+  float: right;
+  text-align: center;
+  z-index: 2;
 }
 
 .buttonIndex {
-    font-size: 1rem;
-    background-color: rgba(255, 255, 255, 1);
-    width: 200px;
-    height: 25px;
-    border: none;
+  font-size: 1rem;
+  background-color: rgba(255, 255, 255, 1);
+  width: 200px;
+  height: 25px;
+  border: none;
 }
 
 .buttonIndex:hover {
-    background-color: rgb(249, 249, 249);
-    padding-right: 10px;
-    transition: 0.25s;
-    cursor: pointer;
+  background-color: rgb(249, 249, 249);
+  padding-right: 10px;
+  transition: 0.25s;
+  cursor: pointer;
 }
 
 .buttonIndex:after {
-    content: '\00bb';
-    position: relative;
-    opacity: 0;
-    top: 0;
-    right: -10px;
-    transition: 0.5s;
+  content: "\00bb";
+  position: relative;
+  opacity: 0;
+  top: 0;
+  right: -10px;
+  transition: 0.5s;
 }
 
 .buttonIndex:hover:after {
-    opacity: 1;
-    right: -3px;
+  opacity: 1;
+  right: -3px;
 }
-
 
 /* Aquí falta que se ajusten al limite superior*/
 #imageContainer {
-    width: auto;
-    display: block;
-    margin-top: -135px;
+  width: auto;
+  display: block;
+  margin-top: -135px;
 }
 
 .image {
-    position: relative;
-    width: 100%;
-    max-height: 500px;
-    min-height: 500px;
-    left: 0px;
-    z-index: -5;
-    animation-name: image;
-    animation-duration: 1.5s;   
+  position: relative;
+  width: 100%;
+  max-height: 500px;
+  min-height: 500px;
+  left: 0px;
+  z-index: 1;
+  animation-name: image;
+  animation-duration: 1.5s;
 }
 
 @keyframes image {
-    from {opacity: 0.8;}
-    to {opacity: 1;}
+  from {
+    opacity: 0.8;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .dot {
-    height: 15px;
-    width: 15px;
-    margin: 10px 2px;
-    background-color: #bbb;
-    border-radius: 50%;
-    display: inline-block;
-    transition: background-color 0.6s ease;
+  height: 15px;
+  width: 15px;
+  margin: 10px 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
 }
 
 .active {
-    background-color: #717171;
+  background-color: #717171;
 }
 
 .lorem {
-    position: static;
-    display: block;
+  position: static;
+  display: block;
 }
-
-
 
 /* Queda pendiente ver cómo hacer que esto afecte a cada texto del Array*/
 .especialidades {
-    font-size: 3rem;
-    border: solid 2px rgb(0, 0, 0);
-    display: flex;
-    }
-
-    .containerCartas {
-        float: left; 
-        width: 85%;
-    }
-
-    .containerOsitos {
-        position: static;
-        width: 10%;
-        float: right;
-    }
-
-    .cadaCarta {
-        display: block;
-        cursor: pointer;        
-    }
-    .cadaCarta:hover {
-        -webkit-text-fill-color: rgb(0, 31, 59);
-    }
-
-    .cadaOsito {
-        vertical-align: text-bottom;
-        text-align: center;
-        font-size: 3.35rem;
-        cursor: pointer;
-    }
-    .cadaOsito:hover {
-        animation: scale 0.3s ease-in-out;
-        animation-fill-mode: initial;
-    }
-    .cadaOsito:after {
-        animation: scale 0.5s;
-        animation-direction: reverse;
-    }
-
-    @keyframes scale {
-        0% {
-            transform: scale(1) rotate(0deg);
-        }
-        100% {
-            transform: scale(1.2) rotate(360deg);
-        }
-    }
-
-.containerProyecto {
-    width: 100%;
-    min-height: fit-content;
+  font-size: 3rem;
+  border: solid 2px rgb(0, 0, 0);
+  display: flex;
 }
 
-.proyectos {
-    display: block;
-    text-align: center;
+.containerCartas {
+  float: left;
+  width: 85%;
+}
+
+.containerOsitos {
+  position: static;
+  width: 10%;
+  float: right;
+}
+
+.cadaCarta {
+  display: block;
+  cursor: pointer;
+}
+.cadaCarta:hover {
+  -webkit-text-fill-color: rgb(0, 31, 59);
+}
+
+.cadaOsito {
+  vertical-align: text-bottom;
+  background-color: #ffffff00;
+  text-align: center;
+  font-size: 3.35rem;
+  cursor: pointer;
+}
+.cadaOsito:hover {
+  animation: scale 0.3s ease-in-out;
+  animation-fill-mode: initial;
+}
+.cadaOsito:after {
+  animation: scale 0.5s;
+  animation-direction: reverse;
+}
+
+@keyframes scale {
+  0% {
+    transform: scale(1) rotate(0deg);
+  }
+  100% {
+    transform: scale(1.2) rotate(360deg);
+  }
+}
+
+.textoVisores {
+  text-align: center;
+  padding: 1rem;
+  
+}
+
+.containerProyecto {
+  display: block;
+  height: 300px;
+  justify-content: center;
 }
 
 .cadaProyecto {
-    display: inline-flex;
-    box-sizing: border-box;
-    min-width: 190px;
-    margin: 20px;
-    width: 190px;
-    height: 254px;
-    background: rgba(217, 217, 217, 0.58);
-    border: 1px solid white;
-    box-shadow: 12px 17px 51px rgba(0, 0, 0, 0.22);
-    backdrop-filter: blur(6px);
-    border-radius: 17px;
-    cursor: pointer;
-    transition: all 0.5s;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    user-select: none;
-    font-weight: bolder;
-    color: black;
-  }
-  
-    .cadaProyecto:hover {
-    border: 1px solid black;
-    transform: scale(1.05);
-  }
-  
-    .cadaProyecto:active {
-    transform: scale(0.95) rotateZ(1.7deg);
-  }
+  display: inline-flex;
+  vertical-align: top;
+  top: 0%;
+  box-sizing: border-box;
+  margin: 15px;
+  width: 190px;
+  min-width: 190px;
+  height: 254px;
+  min-height: 254px;
+  background: rgba(217, 217, 217, 0.58);
+  border: 1px solid white;
+  box-shadow: 12px 17px 51px rgba(0, 0, 0, 0.22);
+  backdrop-filter: blur(6px);
+  border-radius: 17px;
+  cursor: pointer;
+  transition: all 0.5s;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  user-select: none;
+  font-weight: bolder;
+  color: rgb(0, 0, 0);
+}
 
-  
-#file-input{
-    position: fixed;
-    top: 0;
-    float: right;
-    z-index: 1;
-    user-select: none;
+.cadaProyecto:hover {
+  border: 1px solid black;
+  color: #3FBFBF;
+  transform: scale(1.05);
+}
+
+.cadaProyecto:active {
+  transform: scale(0.95) rotateZ(1.7deg);
+}
+
+#file-input {
+  position: fixed;
+  top: 0;
+  float: right;
+  z-index: 1;
+  user-select: none;
 }
 
 .width {
-    width: 95vw;
-    margin-left: 0vw;
-    margin-right: 5vw;
-    user-select: none;
-    position: relative;
+  width: 95vw;
+  margin-left: 0vw;
+  margin-right: 5vw;
+  user-select: none;
+  position: relative;
 }
 
 #three-canvas {
-    position: fixed;
-    top: 0;
-    background-color: rgb(255, 255, 255);
-    height: 500px;
-    z-index: 0;
+  position: fixed;
+  top: 0;
+  background-color: rgb(255, 255, 255);
+  height: 500px;
+  z-index: 0;
 }
 
 .nombreProyecto {
-    position: fixed;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: rgb(255, 255, 255);
-    height: 50px;
-    margin-top: 442px;
-    z-index: 1;
-    background-color: rgba(255, 255, 255, 0.137);
-    backdrop-filter: blur(1px);
-    font-family: 'Courier New', Courier, monospace;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(255, 255, 255);
+  height: 50px;
+  margin-top: 442px;
+  z-index: 1;
+  background-color: rgba(255, 255, 255, 0.137);
+  backdrop-filter: blur(1px);
+  font-family: "Courier New", Courier, monospace;
 }
 
 .container-explicacion {
-    position: absolute;
-    text-align: justify;
-    z-index: -2;
-    top: 510px;
+  position: absolute;
+  text-align: justify;
+  z-index: -2;
+  top: 510px;
 }
 
 #container-spinner {
-    border: 2px solid rgb(225, 225, 225);
-    height: 600px;
-    display: flex;
-    justify-items: center;
-    align-items: center;    
+  border: 2px solid rgb(225, 225, 225);
+  height: 600px;
+  display: flex;
+  justify-items: center;
+  align-items: center;
 }
 
 .hidden {
-    visibility: collapse;
+  visibility: collapse;
 }
 
 .spinner {
-    position: relative;
-    display: flex;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-   }
-   
-   .spinner::before,
-   .spinner::after {
-    content: "";
-    position: absolute;
-    border-radius: inherit;
-   }
-   
-   .spinner:before {
-    width: 100%;
-    height: 100%;
-    background-image: linear-gradient(0deg, #ff00cc 0%, #333399 100%);
-    animation: spin8932 .5s infinite linear;
-   }
-   
-   .spinner:after {
-    width: 85%;
-    height: 85%;
-    background-color: #212121;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-   }
-   
-   @keyframes spin8932 {
-    to {
-     transform: rotate(360deg);
-    }
-   }
+  position: relative;
+  display: flex;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}
+
+.spinner::before,
+.spinner::after {
+  content: "";
+  position: absolute;
+  border-radius: inherit;
+}
+
+.spinner:before {
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(0deg, #ff00cc 0%, #333399 100%);
+  animation: spin8932 0.5s infinite linear;
+}
+
+.spinner:after {
+  width: 85%;
+  height: 85%;
+  background-color: #212121;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@keyframes spin8932 {
+  to {
+    transform: rotate(360deg);
+  }
+}

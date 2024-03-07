@@ -1,0 +1,21 @@
+{
+  "name": "3dm-viewer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "3dm-viewer.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rollup -c",
+    "watch": "rollup -c -w"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "rhino3dm": "^8.4.0",
+    "three": "^0.162.0"
+  },
+  "devDependencies": {
+    "@rollup/plugin-node-resolve": "^13.0.2",
+    "rollup": "^2.45.2"
+  }
+}
