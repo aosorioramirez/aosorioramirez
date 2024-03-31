@@ -1,0 +1,165 @@
+/*Para todo el proeycto*/
+* {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  box-sizing: border-box;
+}
+
+#logo {
+  width: 400px;
+  height: 30px;
+  font-size: 50px;
+  background-color: rgba(255, 255, 255, 0);
+  position: fixed;
+  padding: 5px;
+  margin: auto;
+  float: left;
+  text-align: left;
+  left: 1rem;
+  top: 1rem;
+  z-index: 10;
+}
+#logo:hover {
+  cursor: pointer;
+  animation-name: estira;
+}
+#mueve:hover {
+  animation-name: estira 0.5s;
+}
+
+@keyframes estira {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.2);
+  }
+}
+
+#file-input {
+  position: fixed;
+  top: 0;
+  float: right;
+  z-index: 1;
+  user-select: none;
+}
+
+.width {
+  width: 95vw;
+  margin-left: 0vw;
+  margin-right: 5vw;
+  user-select: none;
+  position: relative;
+}
+
+#three-canvas {
+  position: fixed;
+  top: 0;
+  background-color: rgb(255, 255, 255);
+  height: 500px;
+  z-index: 0;
+}
+
+#nombreProyecto {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(255, 255, 255);
+  height: 50px;
+  margin-top: 442px;
+  z-index: 1;
+  background-color: rgba(255, 255, 255, 0.137);
+  backdrop-filter: blur(1px);
+  font-family: "Courier New", Courier, monospace;
+}
+
+.container-explicacion {
+  position: absolute;
+  text-align: justify;
+  z-index: -2;
+  top: 510px;
+}
+
+.hidden {
+  animation-name: collapseAnimation;
+  animation-delay: 2s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes collapseAnimation {
+  from {
+    visibility: visible;
+  }
+  to {
+    visibility: collapse;
+  }
+}
+
+#container-spinner {
+  pointer-events: none;
+  background-color: white;
+  height: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+}
+
+.spinner {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}
+
+.spinner::before,
+.spinner::after {
+  content: "";
+  position: absolute;
+  border-radius: inherit;
+}
+
+.spinner:before {
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(0deg, #3FBFBF 0%, #313f8f 100%);
+  animation: spin8932 0.5s infinite linear;
+}
+
+.spinner:after {
+  width: 85%;
+  height: 85%;
+  background-color: #212121;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@keyframes spin8932 {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+#progress-text {
+  padding: 20px;
+  position: relative;
+  top: 3rem;
+}
+
+.base-label {
+  margin-top: 1rem;
+  position: fixed;
+  text-align: center;
+  align-items: center;
+  pointer-events: none;
+}
+
+.label {
+  position: relative;
+  width: 100px;
+  color: rgba(40, 66, 67, 0.487);
+  font-size: 8px;
+  padding: 8px;
+}

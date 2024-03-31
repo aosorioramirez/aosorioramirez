@@ -14,6 +14,7 @@ iframe {
   overflow: hidden;
 }
 
+/* LOGO ------------------------------------------------------------- */
 #logo {
   width: 400px;
   filter: invert(1);
@@ -47,6 +48,7 @@ iframe {
   }
 }
 
+/* INDEX ------------------------------------------------------------- */
 #indexContainer {
   border: 0px solid black;
   position: sticky;
@@ -88,34 +90,77 @@ iframe {
   right: -3px;
 }
 
-/* Aquí falta que se ajusten al limite superior*/
-#imageContainer {
-  width: auto;
-  display: block;
-  margin-top: -135px;
+/* IMAGE CONTAINER ------------------------------------------------------------- */
+.mySlides {
+  margin-top: 0;
+  display: none;
+  height: 500px;
 }
-
-.image {
-  position: relative;
-  width: 100%;
+img {
+  vertical-align: middle;
   max-height: 500px;
-  min-height: 500px;
-  left: 0px;
-  z-index: 1;
-  animation-name: image;
-  animation-duration: 1.5s;
+  width: 100vw;
 }
 
-@keyframes image {
-  from {
-    opacity: 0.8;
-  }
-  to {
-    opacity: 1;
-  }
+.slideshow-container {
+  max-width: 1500px;
+  position: relative;
+  /* margin-top: -135px; */
+  z-index: 0;
+}
+
+#prev, #next {
+  cursor: pointer;
+  position: absolute;
+  background-color: #21212100;
+  top: 65%;
+  width: auto;
+  padding: 16px;
+  margin-top: -22px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 10px 10px 0;
+  user-select: none;
+}
+
+#next {
+  right: 0;
+  border-radius: 10px 0 0 10px;
+}
+
+#prev:hover, #next:hover {
+  background-color: rgba(255, 255, 255, 0.137);
+}
+
+.text {
+  color: #f2f2f2;
+  font-size: 15px;
+  padding: 8px 12px;
+  position: absolute;
+  bottom: 8px;
+  width: 100%;
+  text-align: center;
+}
+
+.numbertext {
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+}
+
+
+#dotContainer {
+  position: relative;
+  /* top: 130px; */
+  background: none;
 }
 
 .dot {
+  cursor: pointer;
   height: 15px;
   width: 15px;
   margin: 10px 2px;
@@ -123,21 +168,36 @@ iframe {
   border-radius: 50%;
   display: inline-block;
   transition: background-color 0.6s ease;
+  z-index: 5;
+
 }
 
-.active {
+.active, .dot:hover {
   background-color: #717171;
 }
 
-.lorem {
-  position: static;
+.fade {
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+
+@media only screen and (max-width: 300px) {
+  .prev, .next,.text {font-size: 11px}
+}
+
+/* LOREM ------------------------------------------------------------- */
+#Lorem {
   display: block;
 }
 
-/* Queda pendiente ver cómo hacer que esto afecte a cada texto del Array*/
+/* ESPECIALIDADES ------------------------------------------------------------- */
 .especialidades {
   font-size: 3rem;
-  border: solid 2px rgb(0, 0, 0);
   display: flex;
 }
 
