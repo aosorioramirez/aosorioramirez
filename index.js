@@ -13,7 +13,7 @@ window.onscroll = function () {
   }
 };
 
-//SHOW SLIDES ----------------------------------------------------------------------------
+//SLIDES ----------------------------------------------------------------------------
 
 let slides = document.getElementsByClassName("mySlides");
 let arraySlides = Array.from(slides);
@@ -26,14 +26,25 @@ for (const slide of arraySlides) {
     containerDot.appendChild(text);
 }
 
-let slideIndex = 1;
+// SLIDES FLOW
+let slideIndex = 0;
 showSlides(slideIndex);
 
-document.getElementById("prev").addEventListener("click", plusSlides);
-function plusSlides() {showSlides(slideIndex += -1)};
+const next = document.getElementById("next");
+const prev = document.getElementById("prev");
 
-document.getElementById("next").addEventListener("click", minusSlides);
-function minusSlides() {showSlides(slideIndex += 1)};
+prev.addEventListener("click", minusSlides);
+function minusSlides() {showSlides(slideIndex += -1)};
+
+next.addEventListener("click", plusSlides);
+function plusSlides() {showSlides(slideIndex += 1)};
+
+// AUTO SLIDES FLOW
+function clickNext(){
+  next.click();
+  setTimeout(clickNext, 5000);
+}; clickNext();
+
 
 function showSlides(n) {
   let i;
@@ -56,9 +67,6 @@ function showSlides(n) {
 
   slides[slideIndex - 1].style.display = "block";
   dots[slideIndex - 1].className += " active";
-
-//   slideIndex++;
-//   setTimeout(showSlides, 3000);
 }
 
 let dots = document.getElementsByClassName("dot");
@@ -71,37 +79,17 @@ for (const dot of dotArray) {
     }
 }
 
-// function showSlides(){
-//     let i;
-//     let slides = document.getElementsByClassName("image");
-//     let dots = document.getElementsByClassName("dot");
-
-//     for (i = 0; i < slides.length; i++) {
-//         slides[i].style.display = "none";
-//     }
-
-//     slideIndex++;
-//     if (slideIndex > slides.length) {slideIndex = 1};
-
-//     for (i = 0; i < dots.length; i++) {
-//         dots[i].className = dots[i].className.replace(" active", "");
-//     }
-
-//     slides[slideIndex-1].style.display = "block";
-//     dots[slideIndex-1].className += " active";
-//     setTimeout(showSlides, 4000); //Change image every 2 seconds
-// }
-
 // ESPECIALIDADES / SECCIONES ------------------------------------------------------------
 
 const simboloCruz = Array(nombresEspecialidades.length).fill("🐻");
 
-const cartas = document.querySelector(".containerCartas");
+const cartas = document.querySelector(".containerEspecialidades");
 
 for (const nombre of nombresEspecialidades) {
   const text = document.createElement("h3");
 
-  text.classList.add("cadaCarta");
+  text.classList.add("cadaEspecialidad");
+  text.classList.add("cadaUna");
 
   text.onclick = function () {
     location.href = "indexcarta.html";
@@ -117,6 +105,7 @@ for (const cruz of simboloCruz) {
   const text = document.createElement("h3");
 
   text.classList.add("cadaOsito");
+  text.classList.add("cadaUna");
 
   text.onclick = function () {
     location.href = "indexcarta" + simboloCruz.index + ".html";
