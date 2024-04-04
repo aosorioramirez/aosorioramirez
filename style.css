@@ -21,9 +21,6 @@ img {
 .hidden {
   visibility: collapse;
 }
-body {
-  min-width: 450px;
-}
 
 /* LOGO ------------------------------------------------------------- */
 #logo {
@@ -234,6 +231,7 @@ body {
   text-align: left;
   z-index: 5;
   border: solid 2px rgb(255, 255, 255);
+  user-select: none;
 }
 .especialidadTexto:hover {
   color: #3FBFBF;
@@ -255,6 +253,7 @@ body {
 
 /* VISORES-CARTAS PROYECTOS ------------------------------------------------------------- */
 #textoVisores {
+  position: sticky;
   font-size: 1.5rem;
   padding: 1rem;
   margin-top: 50px;
@@ -306,12 +305,13 @@ body {
 
 
 /* MEDIA ------------------------------------------------------------- */
-@media (min-width: 0px) and (max-width: 800px){
+@media only screen and (orientation: portrait){
   #textoVisores {
-    position: sticky;
-    position: -webkit-sticky;
-    padding: 50px 50px 0px 0px;
+    float: right;
+    position: 0px 50px 0px 50px;
+    margin-top: 2rem;
     padding-bottom: 1rem;
+    padding-top: 3rem;
     top: 0rem;
     width: 100vw;
     text-align: right;
