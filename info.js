@@ -1,10 +1,10 @@
 export const nombresEspecialidades = [
-    "CONOCIMIENTOS Y HABILIDADES",
-    "SOBRE MÍ",
-    "IMPRESIÓN 3D",
-    "GRASSHOPPER",
-    "DYNAMO",
-    "TFM: ESTRUCTURAS-RHINO.INSIDE REVIT"
+    {'name': "SOBRE MÍ", 'icon': "🐻​"},
+    {'name': "CONOCIMIENTOS Y HABILIDADES", 'icon':  "🧠"},
+    {'name': "IMPRESIÓN 3D", 'icon':  "🧵"},
+    {'name': "GRASSHOPPER", 'icon': "🦗"},
+    {'name': "DYNAMO", 'icon': "⚙️"},
+    {'name': "TFM: ESTRUCTURAS-RHINO.INSIDE REVIT", 'icon': "🌉"}
 ]
 
 export const nombresProyectos = [

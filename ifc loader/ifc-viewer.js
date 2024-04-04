@@ -21,7 +21,17 @@ import {
   IFCDOOR,
   IFCWINDOW,
   IFCPLATE,
-  IFCMEMBER
+  IFCMEMBER,
+  IFCROOF,
+  IFCSPACE,
+  IFCSTAIR,
+  IFCBUILDINGELEMENTPROXY,
+  IFCCURTAINWALL,
+  IFCFLOWTERMINAL,
+  IFCCOLUMN,
+  IFCELEMENTASSEMBLY,
+  IFCBEAM,
+  IFCSITE
 } from 'web-ifc';
 
 const categories = {
@@ -31,7 +41,17 @@ const categories = {
   IFCDOOR,
   IFCWINDOW,
   IFCPLATE,
-  IFCMEMBER
+  IFCMEMBER,
+  IFCROOF,
+  IFCSPACE,
+  IFCSTAIR,
+  IFCBUILDINGELEMENTPROXY,
+  IFCCURTAINWALL,
+  IFCFLOWTERMINAL,
+  IFCCOLUMN,
+  IFCELEMENTASSEMBLY,
+  IFCBEAM,
+  IFCSITE
 }
 
 // import * as THREE from 'three';
@@ -67,6 +87,7 @@ const canvasRect = {
   width: threeCanvas.offsetWidth,
   height: threeCanvas.offsetHeight,
 };
+console.log(canvasRect.width);
 const marginRatio = 0.95;
 
 // const windowRect = window.getBoundingClientRect();
@@ -82,10 +103,10 @@ camera.position.x = 8;
 //Creates the lights of the scene
 const lightColor = "white";
 
-const ambientLight = new AmbientLight(lightColor, 0.2);
+const ambientLight = new AmbientLight(lightColor, 0.5);
 scene.add(ambientLight);
 
-const directionalLight = new DirectionalLight(lightColor, 1);
+const directionalLight = new DirectionalLight(lightColor, 0.5);
 directionalLight.position.set(10, 10, 5);
 scene.add(directionalLight);
 
@@ -95,8 +116,8 @@ renderer.setSize(canvasRect.width, canvasRect.height);
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
 //Creates grids and axes in the scene
-const grid = new GridHelper(50, 30);
-scene.add(grid);
+// const grid = new GridHelper(50, 30);
+// scene.add(grid);
 
 const axes = new AxesHelper();
 axes.material.depthTest = false;
@@ -267,8 +288,8 @@ async function highlight(event, material, model, getProps) {
   }
 }
 
-window.onmousemove = (event) =>
-  highlight(event, preselectMat, preselectModel, false);
+// window.onmousemove = (event) =>
+//   highlight(event, preselectMat, preselectModel, false);
 window.onclick = (event) => highlight(event, selectMat, selectModel, true);
 
 // 9 Debugging
@@ -330,7 +351,8 @@ function createTitle(parent, content) {
 }
 
 function nodeToString(node) {
-    return `${node.type} - ${node.expressID}`
+    return `${node.type}`
+    // return `${node.type} - ${node.expressID}`
 }
 
 function removeAllChildren(element) {

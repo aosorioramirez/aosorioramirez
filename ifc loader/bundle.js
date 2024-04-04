@@ -28963,47 +28963,6 @@ class Line3 {
 
 }
 
-class GridHelper extends LineSegments {
-
-	constructor( size = 10, divisions = 10, color1 = 0x444444, color2 = 0x888888 ) {
-
-		color1 = new Color( color1 );
-		color2 = new Color( color2 );
-
-		const center = divisions / 2;
-		const step = size / divisions;
-		const halfSize = size / 2;
-
-		const vertices = [], colors = [];
-
-		for ( let i = 0, j = 0, k = - halfSize; i <= divisions; i ++, k += step ) {
-
-			vertices.push( - halfSize, 0, k, halfSize, 0, k );
-			vertices.push( k, 0, - halfSize, k, 0, halfSize );
-
-			const color = i === center ? color1 : color2;
-
-			color.toArray( colors, j ); j += 3;
-			color.toArray( colors, j ); j += 3;
-			color.toArray( colors, j ); j += 3;
-			color.toArray( colors, j ); j += 3;
-
-		}
-
-		const geometry = new BufferGeometry();
-		geometry.setAttribute( 'position', new Float32BufferAttribute( vertices, 3 ) );
-		geometry.setAttribute( 'color', new Float32BufferAttribute( colors, 3 ) );
-
-		const material = new LineBasicMaterial( { vertexColors: true, toneMapped: false } );
-
-		super( geometry, material );
-
-		this.type = 'GridHelper';
-
-	}
-
-}
-
 class AxesHelper extends LineSegments {
 
 	constructor( size = 1 ) {
@@ -29063,12 +29022,6 @@ class AxesHelper extends LineSegments {
 	}
 
 }
-
-GridHelper.prototype.setColors = function () {
-
-	console.error( 'THREE.GridHelper: setColors() has been deprecated, pass them in the constructor instead.' );
-
-};
 
 //
 
@@ -83263,7 +83216,10 @@ const nombresProyectos = [
     {'name': "TFM: PARABOLOIDES HORMIGÓN",'number': "3", 'loader': "3dm loader/3dm-viewer", 'model': "Cascarones.3dm"},
     {'name': "VIU I CONVIU",'number': "4", 'loader': "ifc loader/ifc-viewer", 'model': "ARQ.ifc"},
     {'name': "VIVIENDA AZOTEA",'number': "5", 'loader': "ifc loader/ifc-viewer", 'model': "2203_BAS_v2_r23.ifc"},
-    {'name': "VIVIENDA CURSO",'number': "6", 'loader': "ifc loader/ifc-viewer", 'model': "01.ifc"}
+    {'name': "VIVIENDA CURSO IFC JS",'number': "6", 'loader': "ifc loader/ifc-viewer", 'model': "01.ifc"},
+    {'name': "VIU I CONVIU",'number': "4", 'loader': "ifc loader/ifc-viewer", 'model': "ARQ.ifc"},
+    {'name': "VIVIENDA AZOTEA",'number': "5", 'loader': "ifc loader/ifc-viewer", 'model': "2203_BAS_v2_r23.ifc"},
+    {'name': "VIVIENDA CURSO IFC JS",'number': "6", 'loader': "ifc loader/ifc-viewer", 'model': "01.ifc"}
 ];
 
 //import { nombresProyectos } from "index.js";
@@ -83275,7 +83231,17 @@ const categories = {
   IFCDOOR,
   IFCWINDOW,
   IFCPLATE,
-  IFCMEMBER
+  IFCMEMBER,
+  IFCROOF,
+  IFCSPACE,
+  IFCSTAIR,
+  IFCBUILDINGELEMENTPROXY,
+  IFCCURTAINWALL,
+  IFCFLOWTERMINAL,
+  IFCCOLUMN,
+  IFCELEMENTASSEMBLY,
+  IFCBEAM,
+  IFCSITE
 };
 
 
@@ -83295,6 +83261,7 @@ const canvasRect = {
   width: threeCanvas.offsetWidth,
   height: threeCanvas.offsetHeight,
 };
+console.log(canvasRect.width);
 const marginRatio = 0.95;
 
 // const windowRect = window.getBoundingClientRect();
@@ -83310,10 +83277,10 @@ camera.position.x = 8;
 //Creates the lights of the scene
 const lightColor = "white";
 
-const ambientLight = new AmbientLight(lightColor, 0.2);
+const ambientLight = new AmbientLight(lightColor, 0.5);
 scene.add(ambientLight);
 
-const directionalLight = new DirectionalLight(lightColor, 1);
+const directionalLight = new DirectionalLight(lightColor, 0.5);
 directionalLight.position.set(10, 10, 5);
 scene.add(directionalLight);
 
@@ -83323,8 +83290,8 @@ renderer.setSize(canvasRect.width, canvasRect.height);
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
 //Creates grids and axes in the scene
-const grid = new GridHelper(50, 30);
-scene.add(grid);
+// const grid = new GridHelper(50, 30);
+// scene.add(grid);
 
 const axes = new AxesHelper();
 axes.material.depthTest = false;
@@ -83437,14 +83404,12 @@ function cast(event) {
   return raycaster.intersectObjects(ifcModels);
 }
 
-const preselectMat = new MeshLambertMaterial({
+new MeshLambertMaterial({
   transparent: true,
   opacity: 0.6,
   color: 0xccccff,
   depthTest: false,
 });
-
-let preselectModel = { id: -1 };
 
 const selectMat = new MeshLambertMaterial({
   transparent: true,
@@ -83494,8 +83459,8 @@ async function highlight(event, material, model, getProps) {
   }
 }
 
-window.onmousemove = (event) =>
-  highlight(event, preselectMat, preselectModel, false);
+// window.onmousemove = (event) =>
+//   highlight(event, preselectMat, preselectModel, false);
 window.onclick = (event) => highlight(event, selectMat, selectModel, true);
 
 // 9 Debugging
@@ -83557,7 +83522,8 @@ function createTitle(parent, content) {
 }
 
 function nodeToString(node) {
-    return `${node.type} - ${node.expressID}`
+    return `${node.type}`
+    // return `${node.type} - ${node.expressID}`
 }
 
 function removeAllChildren(element) {

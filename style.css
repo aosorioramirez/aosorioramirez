@@ -207,64 +207,49 @@ body {
 
 /* ESPECIALIDADES ------------------------------------------------------------- */
 .especialidades {
-  display: flex;
-  position: relative;
-  height: max-content;
-}
-
-.cadaUna{
-  font-size: 2rem;
-  height: 50px;
-  justify-content: center;
-  margin: auto;
-}
-
-.containerEspecialidades {
-  float: left;
-  height: fit-content;
-  padding: 10px;
-  width: 85%;
-}
-
-.containerOsitos {
-  position: static;
-  width: 10%;
-  float: right;
-}
-
-.cadaEspecialidad {
   display: block;
+  position: relative;
+  /* border: solid 1px rgb(255, 0, 212); */
+}
+
+.especialidadContainer {
+  display: inline-flex;
+  margin: 0px;
+  margin-bottom: 0.5rem;
+  width: 100%;
+  /* border: solid 1px rgb(0, 0, 255); */
+  background: none;
+  font-size: 2rem;
+  text-align: center;
+  align-items: center;
+}
+
+.especialidadTexto {
+  display: block;
+  height: auto;
   cursor: pointer;
   transition: all 0.5s;
-  height: max-content;
-  margin-bottom: 1rem;
+  margin: 0px;
+  padding-bottom: 6px;
+  text-align: left;
+  z-index: 5;
+  border: solid 2px rgb(255, 255, 255);
 }
-.cadaEspecialidad:hover {
+.especialidadTexto:hover {
   color: #3FBFBF;
+  background-color: rgba(255, 255, 255, 0.196);
+  backdrop-filter: blur(0px);
+  padding-left: 45px;
 }
 
-.cadaOsito {
-  vertical-align: text-bottom;
-  background-color: #ffffff00;
+.especialidadSimbolo {
   text-align: center;
-  cursor: pointer;
-}
-.cadaOsito:hover {
-  animation: scale 0.3s ease-in-out;
-  animation-fill-mode: initial;
-}
-.cadaOsito:after {
-  animation: scale 0.5s;
-  animation-direction: reverse;
-}
-
-@keyframes scale {
-  0% {
-    transform: scale(1) rotate(0deg);
-  }
-  100% {
-    transform: scale(1.2) rotate(360deg);
-  }
+  position: absolute;
+  height: max-content;
+  margin: 0px;
+  cursor: none;
+  font-size: 1.5rem;
+  /* border: solid 1px rgb(255, 123, 0); */
 }
 
 

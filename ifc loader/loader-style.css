@@ -44,9 +44,8 @@
 }
 
 .width {
-  width: 95vw;
+  width: 70%;
   margin-left: 0vw;
-  margin-right: 5vw;
   user-select: none;
   position: relative;
 }
@@ -57,12 +56,14 @@
   background-color: rgb(255, 255, 255);
   height: 500px;
   z-index: 0;
+  border: solid 1px yellow;
 }
 
 #nombreProyecto {
   position: fixed;
   display: flex;
   justify-content: center;
+  text-align: center;
   align-items: center;
   background-color: rgb(255, 255, 255);
   height: 50px;
@@ -74,10 +75,11 @@
 }
 
 .container-explicacion {
-  position: absolute;
+  position: relative;
   text-align: justify;
   z-index: -2;
   top: 510px;
+  /* border: solid 1px blue; */
 }
 
 .hidden {
@@ -139,31 +141,36 @@
 
 
 
-/* IFC TREE */
+/* IFC TREE ---------------------------------------------------*/
 
 #ifc-tree-menu {
-    position: absolute;
+    position: relative;
     overflow-y: scroll;
     float: right;
     right: 0;
     background-color: white;
-    top: 0px;
-    width: 250px;
+    top: 40px;
+    width: 30%;
     margin-top: 150px;
     height: 100vh;
-    padding: 1rem;
+    padding: 10px;
+    border: solid 1px greenyellow;
 }
 
 /* Remove default bullets */
 ul,
 #myUL {
   list-style-type: none;
+  /* border: 1px solid magenta; */
+  padding-left: 20px;
+  padding-top: 10px;
 }
 
 /* Remove margins and padding from the parent ul */
 #myUL {
   margin: 0;
   padding: 0;
+  /* border: 1px solid green; */
 }
 
 /* Style the caret/arrow */
@@ -175,7 +182,7 @@ ul,
 /* Create the caret/arrow with a unicode, and style it */
 .caret::before {
   content: "\25B6";
-  color: black;
+  color: rgb(0, 138, 176);
   display: inline-block;
   margin-right: 6px;
 }
@@ -188,7 +195,7 @@ ul,
 /* Hide the nested list */
 .nested {
   display: none;
-  margin-left: 0.5rem;
+  margin-left: 0.2rem;
 }
 
 /* Show the nested list when the user clicks on the caret/arrow (with JavaScript) */
@@ -196,13 +203,17 @@ ul,
   display: block;
 }
 
+
+/* CHECKBOXES ---------------------------------------- */
 .checkboxes {
-  position: absolute;
+  position: fixed;
   background-color: white;
+  padding-bottom: 20px;
+  width: 30%;
   padding: 10px;
   top: 0rem;
-  right: 1rem;
+  right: 0.5rem;
   outline: none;
-
+  border: solid 1px orange;
 }
 

@@ -80,40 +80,44 @@ for (const dot of dotArray) {
 }
 
 // ESPECIALIDADES / SECCIONES ------------------------------------------------------------
-
-const simboloCruz = Array(nombresEspecialidades.length).fill("🐻");
-
-const cartas = document.querySelector(".containerEspecialidades");
+const especialidad = document.querySelector(".especialidades");
 
 for (const nombre of nombresEspecialidades) {
+  const container = document.createElement("h3");
+  const textSimbol = document.createElement("h3");
   const text = document.createElement("h3");
 
-  text.classList.add("cadaEspecialidad");
-  text.classList.add("cadaUna");
+  container.classList.add("especialidadContainer");
+  textSimbol.classList.add("especialidadSimbolo");
+  text.classList.add("especialidadTexto");
 
   text.onclick = function () {
     location.href = "indexcarta.html";
   };
 
-  text.textContent = nombre;
-  cartas.appendChild(text);
+  text.textContent = nombre.name;
+  textSimbol.textContent = nombre.icon;
+
+  especialidad.appendChild(container);
+  container.appendChild(textSimbol);
+  container.appendChild(text);
 }
 
-const cruces = document.querySelector(".containerOsitos");
+// const simbolos = document.querySelector(".containerSimbolos");
 
-for (const cruz of simboloCruz) {
-  const text = document.createElement("h3");
+// for (const simbolo of simbolosArray) {
+//   const text = document.createElement("h3");
 
-  text.classList.add("cadaOsito");
-  text.classList.add("cadaUna");
+//   text.classList.add("cadaSimbolo");
+//   text.classList.add("cadaUna");
 
-  text.onclick = function () {
-    location.href = "indexcarta" + simboloCruz.index + ".html";
-  };
+//   text.onclick = function () {
+//     location.href = "indexcarta" + simbolosArray.index + ".html";
+//   };
 
-  text.textContent = cruz;
-  cruces.appendChild(text);
-}
+//   text.textContent = simbolo;
+//   cruces.appendChild(text);
+// }
 
 // PROJECT CARDS -------------------------------------------------------------------------
 
