@@ -199,6 +199,7 @@ img {
 #Lorem {
   display: block;
   position: relative;
+  text-align: justify;
   margin-bottom: 3rem;
 }
 
@@ -208,6 +209,7 @@ img {
   position: relative;
   user-select: none;
   outline: none;
+  -webkit-tap-highlight-color: transparent;
   /* border: solid 1px rgb(255, 0, 212); */
 }
 
@@ -292,6 +294,9 @@ img {
   user-select: none;
   font-weight: bolder;
   color: rgb(0, 0, 0);
+  user-select: none;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .cadaProyecto:hover {
