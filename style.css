@@ -206,6 +206,8 @@ img {
 .especialidades {
   display: block;
   position: relative;
+  user-select: none;
+  outline: none;
   /* border: solid 1px rgb(255, 0, 212); */
 }
 
@@ -231,7 +233,6 @@ img {
   text-align: left;
   z-index: 5;
   border: solid 2px rgb(255, 255, 255);
-  user-select: none;
 }
 .especialidadTexto:hover {
   color: #3FBFBF;
