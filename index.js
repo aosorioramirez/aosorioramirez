@@ -91,9 +91,15 @@ for (const nombre of nombresEspecialidades) {
   textSimbol.classList.add("especialidadSimbolo");
   text.classList.add("especialidadTexto");
 
-  text.onclick = function () {
-    location.href = "indexcarta.html";
-  };
+  function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
+  text.onclick = function especialidadClick() {
+    sleep(500).then(() => location.href = nombre.url);
+  }
+
+
 
   text.textContent = nombre.name;
   textSimbol.textContent = nombre.icon;
@@ -102,22 +108,6 @@ for (const nombre of nombresEspecialidades) {
   container.appendChild(textSimbol);
   container.appendChild(text);
 }
-
-// const simbolos = document.querySelector(".containerSimbolos");
-
-// for (const simbolo of simbolosArray) {
-//   const text = document.createElement("h3");
-
-//   text.classList.add("cadaSimbolo");
-//   text.classList.add("cadaUna");
-
-//   text.onclick = function () {
-//     location.href = "indexcarta" + simbolosArray.index + ".html";
-//   };
-
-//   text.textContent = simbolo;
-//   cruces.appendChild(text);
-// }
 
 // PROJECT CARDS -------------------------------------------------------------------------
 
