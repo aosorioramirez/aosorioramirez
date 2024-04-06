@@ -1,0 +1,31 @@
+body {
+    display: flex;
+    font-size: 30px;
+}
+
+
+#container {
+    display: flex;
+    margin: auto;
+    margin-top: 100px;
+    align-items: center;
+    justify-content: center;
+    width: 400px;
+}
+
+.wheel {
+    animation: rotation 2s infinite linear;
+    width: auto;
+    align-content: center;
+    justify-content: center;
+}
+
+
+@keyframes rotation {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(359deg);
+    }
+}
