@@ -50,7 +50,6 @@ const nombreProyecto = document.getElementById("nombreProyecto");
 nombreProyecto.textContent = `${currentProject.name}`;
 
 
-
 let USE_WIREFRAME = false;
 
 //Creates the Three.js scene
@@ -141,11 +140,13 @@ rhinoLoader.load(
     });
     const materialsSet = Array.from(materials);
 
-    console.log(materialsSet[4]);
+    // console.log(materialsSet[4]);
 
     for (let mat of materialsSet) {
       if (mat.name === "TELA TRANSPARENTE") {
-        const gui = new GUI();
+        const gui = new GUI({autoPlace: false});
+        gui.domElement.id = 'gui';
+        gui_container.appendChild(gui.domElement);
         gui.add(mat, 'opacity', 0, 1, 0.1).name('Transparencia Malla');
         if (mat.opacity === 1){
           mat.depthTest = true;
@@ -357,7 +358,7 @@ function highlight(event, material) {
     const foundObject = found.object;
     const foundMaterial = found.object.material;
 
-    console.log(foundObject);
+    // console.log(foundObject);
 
     objectsStore.push(foundObject);
     materialsStore.push(foundMaterial);
@@ -394,3 +395,17 @@ function restorePreviousMat(mat) {
 
 // window.onmousemove = (event) => highlight(event, preselectMat);
 window.onclick = (event) => highlight(event, selectMat);
+
+
+// BACK BUTTON -----------------------------------------------------------
+const back = document.getElementById("backContainer");
+
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+back.onclick = function especialidadClick() {
+  sleep(500).then(() => history.back());
+}
+
+// AQUI FALTARÍA EL DISPOSE PARA LIMPIAR LA MEMORIA-----------------------

@@ -40845,9 +40845,17 @@ const nombresProyectos = [
     {'name': "TFM: ESTRUCTURAS TENSEGRITY",'number': "1", 'loader': "3dm loader/3dm-viewer", 'model': "Tensegrity.3dm"},
     {'name': "TFM: ESTRUCTURAS HINCHABLES",'number': "2", 'loader': "3dm loader/3dm-viewer", 'model': "Hinchable.3dm"},
     {'name': "TFM: PARABOLOIDES HORMIGÓN",'number': "3", 'loader': "3dm loader/3dm-viewer", 'model': "Cascarones.3dm"},
-    {'name': "MESA FLOTANTE",'number': "4", 'loader': "3dm loader/3dm-viewer", 'model': "Hinchable.3dm"},
-    {'name': "VIVIENDA IFC",'number': "5", 'loader': "ifc loader/ifc-viewer", 'model': "Hinchable.3dm"},
-    {'name': "PROYECTO 6",'number': "6", 'loader': "3dm loader/3dm-viewer", 'model': "Hinchable.3dm"}
+    {'name': "VIU I CONVIU",'number': "4", 'loader': "ifc loader/ifc-viewer", 'model': "ARQ.ifc"},
+    {'name': "VIVIENDA AZOTEA",'number': "5", 'loader': "ifc loader/ifc-viewer", 'model': "2203_BAS_v2_r23.ifc"},
+    {'name': "VIVIENDA CURSO IFC JS",'number': "6", 'loader': "ifc loader/ifc-viewer", 'model': "01.ifc"},
+    {'name': "VIU I CONVIU",'number': "4", 'loader': "ifc loader/ifc-viewer", 'model': "ARQ.ifc"},
+    {'name': "VIVIENDA AZOTEA",'number': "5", 'loader': "ifc loader/ifc-viewer", 'model': "2203_BAS_v2_r23.ifc"},
+    {'name': "VIVIENDA CURSO IFC JS",'number': "6", 'loader': "ifc loader/ifc-viewer", 'model': "01.ifc"},
+    {'name': "VIVIENDA AZOTEA",'number': "5", 'loader': "ifc loader/ifc-viewer", 'model': "2203_BAS_v2_r23.ifc"},
+    {'name': "VIVIENDA CURSO IFC JS",'number': "6", 'loader': "ifc loader/ifc-viewer", 'model': "01.ifc"},
+    {'name': "VIU I CONVIU",'number': "4", 'loader': "ifc loader/ifc-viewer", 'model': "ARQ.ifc"},
+    {'name': "VIVIENDA AZOTEA",'number': "5", 'loader': "ifc loader/ifc-viewer", 'model': "2203_BAS_v2_r23.ifc"},
+    {'name': "VIVIENDA CURSO IFC JS",'number': "6", 'loader': "ifc loader/ifc-viewer", 'model': "01.ifc"}
 ];
 
 /**
@@ -40864,7 +40872,6 @@ const currentProject = nombresProyectos[currentProjectNumber-1];
 
 const nombreProyecto = document.getElementById("nombreProyecto");
 nombreProyecto.textContent = `${currentProject.name}`;
-
 
 
 let USE_WIREFRAME = false;
@@ -40932,7 +40939,7 @@ rhinoLoader.setLibraryPath("node_modules/rhino3dm/");
 let childrenRhino;
 
 rhinoLoader.load(
-  `loaders/${currentProject.model}`,
+  `./loaders/${currentProject.model}`,
   async function (object) {
     childrenRhino = object.children;
     for (let child of childrenRhino) {
@@ -40957,11 +40964,13 @@ rhinoLoader.load(
     });
     const materialsSet = Array.from(materials);
 
-    console.log(materialsSet[4]);
+    // console.log(materialsSet[4]);
 
     for (let mat of materialsSet) {
       if (mat.name === "TELA TRANSPARENTE") {
-        const gui = new g();
+        const gui = new g({autoPlace: false});
+        gui.domElement.id = 'gui';
+        gui_container.appendChild(gui.domElement);
         gui.add(mat, 'opacity', 0, 1, 0.1).name('Transparencia Malla');
         if (mat.opacity === 1){
           mat.depthTest = true;
@@ -41168,7 +41177,7 @@ function highlight(event, material) {
     const foundObject = found.object;
     const foundMaterial = found.object.material;
 
-    console.log(foundObject);
+    // console.log(foundObject);
 
     objectsStore.push(foundObject);
     materialsStore.push(foundMaterial);
@@ -41205,3 +41214,17 @@ function restorePreviousMat(mat) {
 
 // window.onmousemove = (event) => highlight(event, preselectMat);
 window.onclick = (event) => highlight(event, selectMat);
+
+
+// BACK BUTTON -----------------------------------------------------------
+const back = document.getElementById("backContainer");
+
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+back.onclick = function especialidadClick() {
+  sleep(500).then(() => history.back());
+};
+
+// AQUI FALTARÍA EL DISPOSE PARA LIMPIAR LA MEMORIA-----------------------

@@ -2,16 +2,16 @@ import { nombresProyectos, nombresEspecialidades } from "./info.js";
 
 //INDEX ----------------------------------------------------------------------------------
 
-const index = document.getElementById("indexContainer");
+// const index = document.getElementById("indexContainer");
 
-window.onscroll = function () {
-  var currentScrollY = window.scrollY;
-  if (currentScrollY > 500) {
-    index.classList.add("hidden");
-  } else {
-    index.classList.remove("hidden");
-  }
-};
+// window.onscroll = function () {
+//   var currentScrollY = window.scrollY;
+//   if (currentScrollY > 500) {
+//     index.classList.add("hidden");
+//   } else {
+//     index.classList.remove("hidden");
+//   }
+// };
 
 //SLIDES ----------------------------------------------------------------------------
 
