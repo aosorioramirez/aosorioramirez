@@ -5,7 +5,8 @@
 }
 
 #logo {
-  width: 400px;
+  filter: invert(1);
+  mix-blend-mode: difference;
   height: 30px;
   font-size: 50px;
   background-color: rgba(255, 255, 255, 0);
@@ -16,7 +17,7 @@
   text-align: left;
   left: 1rem;
   top: 1rem;
-  z-index: 10;
+  z-index: 20;
 }
 #logo:hover {
   cursor: pointer;
@@ -35,17 +36,117 @@
   }
 }
 
-#file-input {
+/* BACK ------------------------------------------------------------- */
+#backContainer {
+  z-index: 11;
   position: fixed;
-  top: 0;
-  float: right;
-  z-index: 1;
-  user-select: none;
+  top: 80px;
+  left: 20px;
+  width: 80px;
+  height: 20px;
+  text-align: left;
+  border-radius: 20px;
+  transition: all 0.5s;
+  color: rgb(122, 122, 122);
+}
+#backContainer:hover {
+  color: rgb(87, 87, 87);
+  box-shadow: 0px 1px 2px 1px #3fbfbf82;
+  cursor: pointer;
+}
+#back {
+  z-index: 11;
+  pointer-events: visible;
+  width: 80px;
+  position: absolute;
+  color: rgb(202, 202, 202);
+  transition: all 0.5s;
+}
+#back:hover {
+  color: rgba(63, 191, 191, 0.51);
+  transform: translateX(25px);
+  cursor: pointer;
+  visibility: visible;
+}
+#backArrow {
+  position: absolute;
+  transition: all 0.5s;
+  width: 80px;
+  left: -10px;
+  text-align: center;
+  opacity: 0;
+}
+#backArrow:hover {
+  transform: translateX(-40px);
+  opacity: 1;
+  color: #3fbfbf82;
 }
 
+/* DESPLEGABLE CHECKBOXES------------------------------------------------------------- */
+.collapsible {
+  position: fixed;
+  background-color: #ffffff;
+  box-shadow: 0px 1px 2px 1px rgb(202, 202, 202);
+  color: rgb(202, 202, 202);
+  border-radius: 20px;
+  cursor: pointer;
+  border: none;
+  text-align: center;
+  outline: none;
+  font-size: 15px;
+  width: 200px;
+  height: 35px;
+  right: 5vw;
+  transition: all 0.5s;
+}
+
+.active {
+  background-color: #ffffff;
+  box-shadow: 0px 1px 2px 1px #3fbfbf82;
+}
+.collapsible:hover {
+  background-color: #ffffff;
+  color: #3fbfbf82;
+  box-shadow: 0px 1px 2px 1px #3fbfbf82;
+}
+
+#checkboxContainer {
+  display: none;
+  position: fixed;
+  background-color: #ffffff40;
+  right: 5vw;
+  top: 50px;
+  height: auto;
+  width: 200px;
+}
+
+.checkbox {
+  padding: 0px;
+  display: inline-flex;
+  overflow: hidden;
+  font-size: small;
+  backdrop-filter: blur(1px);
+  background-color: none;
+  width: 100%;
+  outline: none;
+  width: 200px;
+}
+
+.checkboxText {
+  cursor: pointer;
+}
+
+.input {
+  cursor: pointer;
+}
+
+
+
+/* OTROS ------------------------------------------------------------- */
 .width {
-  width: 70%;
+  width: 95vw;
   margin-left: 0vw;
+  margin-right: 5vw;
   user-select: none;
   position: relative;
 }
@@ -56,30 +157,27 @@
   background-color: rgb(255, 255, 255);
   height: 500px;
   z-index: 0;
-  border: solid 1px yellow;
 }
 
 #nombreProyecto {
   position: fixed;
   display: flex;
   justify-content: center;
-  text-align: center;
   align-items: center;
+  text-align: center;
   background-color: rgb(255, 255, 255);
   height: 50px;
   margin-top: 442px;
   z-index: 1;
   background-color: rgba(255, 255, 255, 0.137);
   backdrop-filter: blur(1px);
-  font-family: "Courier New", Courier, monospace;
 }
 
 .container-explicacion {
-  position: relative;
+  position: absolute;
   text-align: justify;
   z-index: -2;
   top: 510px;
-  /* border: solid 1px blue; */
 }
 
 .hidden {
@@ -139,11 +237,51 @@
   top: 3rem;
 }
 
+/* GUI-CONTAINER ----------------------------------------------------- */
+#gui_container {
+  position: fixed;
+  margin-right: 0px;
+  top: 0px;
+  z-index: 15;
+}
 
+.lil-gui {
+  color: #313f8f;
+  background: none;
+  --tittle-background-color: #3fbfbf00;
+  --widget-color: #3fbfbf18;
+  --hover-color: #4f4f4f14;
+  --focus-color: #4f4f4f14;
+}
+
+.lil-gui .title {
+  --title-height: 0px;
+}
+
+.lil-gui .controller .name {
+  text-align: right;
+}
+
+.lil-gui input {
+  text-align: center;
+  width: 20px;
+}
+
+.title {
+  background: none;
+  visibility: collapse;
+  --tittle-background-color: #3fbfbf00;
+}
+
+.lil-gui.autoPlace {
+  top: 450px;
+  margin-bottom: 2px;
+  left: 1vw;
+}
 
 /* IFC TREE ---------------------------------------------------*/
 
-#ifc-tree-menu {
+/* #ifc-tree-menu {
     position: relative;
     overflow-y: scroll;
     float: right;
@@ -155,65 +293,49 @@
     height: 100vh;
     padding: 10px;
     border: solid 1px greenyellow;
-}
+} */
 
 /* Remove default bullets */
-ul,
-#myUL {
+/* ul, */
+/* #myUL {
   list-style-type: none;
-  /* border: 1px solid magenta; */
   padding-left: 20px;
   padding-top: 10px;
-}
+} */
 
 /* Remove margins and padding from the parent ul */
-#myUL {
+/* #myUL {
   margin: 0;
   padding: 0;
-  /* border: 1px solid green; */
-}
+} */
 
 /* Style the caret/arrow */
-.caret {
+/* .caret {
   cursor: pointer;
-  user-select: none; /* Prevent text selection */
-}
+  user-select: none;
+} */
 
 /* Create the caret/arrow with a unicode, and style it */
-.caret::before {
+/* .caret::before {
   content: "\25B6";
   color: rgb(0, 138, 176);
   display: inline-block;
   margin-right: 6px;
-}
+} */
 
 /* Rotate the caret/arrow icon when clicked on (using JavaScript) */
-.caret-down::before {
+/* .caret-down::before {
   transform: rotate(90deg);
-}
+} */
 
 /* Hide the nested list */
-.nested {
+/* .nested {
   display: none;
   margin-left: 0.2rem;
-}
+} */
 
 /* Show the nested list when the user clicks on the caret/arrow (with JavaScript) */
-.active {
+/* .active {
   display: block;
-}
-
-
-/* CHECKBOXES ---------------------------------------- */
-.checkboxes {
-  position: fixed;
-  background-color: white;
-  padding-bottom: 20px;
-  width: 30%;
-  padding: 10px;
-  top: 0rem;
-  right: 0.5rem;
-  outline: none;
-  border: solid 1px orange;
-}
+} */
 

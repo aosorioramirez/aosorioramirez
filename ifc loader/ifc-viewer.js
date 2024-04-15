@@ -1,4 +1,3 @@
-//import { nombresProyectos } from "index.js";
 import {
   AmbientLight,
   AxesHelper,
@@ -12,51 +11,35 @@ import {
   Mesh,
   Raycaster,
   Vector2,
+  PlaneHelper,
+  Plane,
+  Vector3
 } from "three";
 
-import {
-  IFCWALLSTANDARDCASE,
-  IFCSLAB,
-  IFCFURNISHINGELEMENT,
-  IFCDOOR,
-  IFCWINDOW,
-  IFCPLATE,
-  IFCMEMBER,
-  IFCROOF,
-  IFCSPACE,
-  IFCSTAIR,
-  IFCBUILDINGELEMENTPROXY,
-  IFCCURTAINWALL,
-  IFCFLOWTERMINAL,
-  IFCCOLUMN,
-  IFCELEMENTASSEMBLY,
-  IFCBEAM,
-  IFCSITE
-} from 'web-ifc';
-
-const categories = {
-  IFCWALLSTANDARDCASE,
-  IFCSLAB,
-  IFCFURNISHINGELEMENT,
-  IFCDOOR,
-  IFCWINDOW,
-  IFCPLATE,
-  IFCMEMBER,
-  IFCROOF,
-  IFCSPACE,
-  IFCSTAIR,
-  IFCBUILDINGELEMENTPROXY,
-  IFCCURTAINWALL,
-  IFCFLOWTERMINAL,
-  IFCCOLUMN,
-  IFCELEMENTASSEMBLY,
-  IFCBEAM,
-  IFCSITE
-}
-
-// import * as THREE from 'three';
+// import { 
+//   IFCBEAM,
+//   IFCBUILDINGELEMENTPROXY,
+//   IFCCOLUMN,
+//   IFCCURTAINWALL,
+//   IFCDOOR,
+//   IFCELEMENTASSEMBLY,
+//   IFCFLOWTERMINAL,
+//   IFCFURNISHINGELEMENT,
+//   IFCOPENINGELEMENT,
+//   IFCPLATE,
+//   IFCROOF,
+//   IFCSLAB,
+//   IFCSPACE,
+//   IFCSTAIR,
+//   IFCSTAIRFLIGHT,
+//   IFCWALL,
+//   IFCWALLSTANDARDCASE,
+//   IFCWINDOW
+// } from 'web-ifc';
 
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
+
+import GUI from "three/examples/jsm/libs/lil-gui.module.min.js";
 
 import { IFCLoader } from "web-ifc-three/IFCLoader.js";
 
@@ -70,12 +53,10 @@ import { MeshLambertMaterial } from "three";
 
 import { nombresProyectos, nombresEspecialidades } from "../info.js";
 
-
 const currentProjectNumber = localStorage.getItem("projectNumber");
 const currentProject = nombresProyectos[currentProjectNumber-1];
 
 const nombreProyecto = document.getElementById("nombreProyecto");
-console.log(nombreProyecto);
 nombreProyecto.textContent = `${currentProject.name}`;
 
 //Creates the Three.js scene
@@ -87,7 +68,6 @@ const canvasRect = {
   width: threeCanvas.offsetWidth,
   height: threeCanvas.offsetHeight,
 };
-console.log(canvasRect.width);
 const marginRatio = 0.95;
 
 // const windowRect = window.getBoundingClientRect();
@@ -114,10 +94,11 @@ scene.add(directionalLight);
 const renderer = new WebGLRenderer({ canvas: threeCanvas, alpha: true });
 renderer.setSize(canvasRect.width, canvasRect.height);
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+renderer.localClippingEnabled = true;
 
-//Creates grids and axes in the scene
-// const grid = new GridHelper(50, 30);
-// scene.add(grid);
+let controlClipping = {z:0};
+let clippingVector = new Vector3( 0, -1, 0);
+let clippingPlane = new Plane(clippingVector);
 
 const axes = new AxesHelper();
 axes.material.depthTest = false;
@@ -127,17 +108,8 @@ scene.add(axes);
 //Creates the orbit controls (to navigate the scene)
 const controls = new OrbitControls(camera, threeCanvas);
 controls.enableDamping = true;
+controls.zoomToCursor = true;
 controls.target.set(-2, 0, 0);
-
-//Animation loop
-const animate = () => {
-  controls.update();
-  renderer.render(scene, camera);
-  requestAnimationFrame(animate);
-};
-
-animate();
-
 
 //Adjust the viewport to the size of the browser
 window.addEventListener("resize", () => {
@@ -170,19 +142,73 @@ ifcLoader.ifcManager.setupThreeMeshBVH(
 ifcLoader.ifcManager.applyWebIfcConfig({ COORDINATE_TO_ORIGIN: true });
 
 const ifcModels = [];
-let autoModel;
+let ifcModel;
 
 // console.log(`./loaders/${currentProject.model}`);
 
+let projectCategories = [];
+let projectCategoriesKeys = [];
+let projectCategoriesNo = [
+  "IFCPROJECT",
+  "IFCSPACE",
+  "IFCBUILDINGSTOREY",
+  // "IFCBUILDINGELEMENTPROXY",
+  "IFCBUILDING"
+];
+let projectCategoriesSet = {};
+let projectCategoriesNames = [];
+
 async function loadIfc() {
-  autoModel = await ifcLoader.loadAsync(`./loaders/${currentProject.model}`);
-  scene.add(autoModel);
-  ifcModels.push(autoModel);
-  autoModel.removeFromParent();
+  ifcModel = await ifcLoader.loadAsync(`./loaders/${currentProject.model}`);
+  scene.add(ifcModel);
+  ifcModel.castShadow = true;
+
+  ifcModels.push(ifcModel);
+  ifcModel.removeFromParent();
+
+  let allMaterials = ifcModel.material;
+
+  allMaterials[0].clippingPlanes = [clippingPlane]
+  for (let mat of allMaterials) {
+    mat.clippingPlanes = [clippingPlane];
+  }
+
+  console.log(ifcModel);
+
+  // MODEL BOUNDING BOX
+  let minZ = Math.floor(ifcModel.geometry.boundingBox.min.y);
+  console.log(minZ);
+  let maxZ = Math.ceil(ifcModel.geometry.boundingBox.max.y);
+  console.log(maxZ);
+  // GUI  -----------------------------------------------------------
+  let gui = new GUI(); 
+  gui.domElement.id = 'gui'; 
+  gui_container.appendChild(gui.domElement); 
+  gui.add(controlClipping, 'z', minZ, maxZ, 0.01).name('Altura');
+  gui.add(controlClipping, 'z', minZ, maxZ, 0.01).name('Plano de corte');
+
+  await getAllModelCategories(ifcModel);
+
+  let projectCategoriesYes = projectCategoriesNames.filter(x=> !projectCategoriesNo.includes(x));
+
+  createCheckbox(projectCategoriesYes);
+
+  for (let i = 0; i < projectCategories.length; i++) {
+    const catKey = ((Object.keys(projectCategories[i])[0]));
+    projectCategoriesKeys.push(catKey); 
+  }
+
+  for (let i = 0; i < projectCategoriesYes.length; i++){
+    const categoryName = projectCategoriesYes[i];
+    const indexOfYes = projectCategoriesKeys.indexOf(categoryName);
+
+    Object.assign(projectCategoriesSet, projectCategories[indexOfYes]);
+  }
+
   
-  const project = await autoModel.ifcManager.getSpatialStructure(autoModel.modelID);
-  console.log(project);
-  createTreMenu(project);
+  // const project = await autoModel.ifcManager.getSpatialStructure(autoModel.modelID);
+  // createTreMenu(project);
+
   await setupAllCategories();
 }
 
@@ -209,6 +235,101 @@ readWasm();
 setUpMultiThreading();
 setupProgressNotification();
 
+
+// GET THE NAME OF CATEGORIES ----------------------------------------
+// PRUEBA ADRIAN 
+
+async function getAllModelCategories(model) {
+  const allElements = model.ifcManager.types.state.models[0].types;
+  const allElementsEntries = Object.values(allElements);
+
+  const typesMap = model.ifcManager.typesMap;
+
+  const eachCategory = allElementsEntries.filter(onlyUnique);
+
+  await relateTypes(typesMap, eachCategory);
+}
+
+function onlyUnique(value, index, array) {
+  return array.indexOf(value) === index;
+}
+
+async function relateTypes (matrixRelate, categoryCodes) {
+  const codes = Object.keys(matrixRelate);
+  const names = Object.values(matrixRelate);
+
+  const categString = categoryCodes.map(String);
+
+  for (let categ of categString) {
+    const index = codes.indexOf(categ);
+    const categoryName = names[index];
+
+    projectCategoriesNames.push(categoryName);
+
+    const categoryObject = {
+       [categoryName]: parseInt(categ)
+    }
+
+    projectCategories.push(categoryObject);
+  }
+}
+
+
+// ----------------------------------------
+
+
+// Gets the name of a category
+function getName(category) {
+	const names = Object.keys(projectCategoriesSet);
+	return names.find(name => projectCategoriesSet[name] === category);
+}
+
+
+// Gets all the items of a category
+async function getAll(category) {
+  return ifcModel.ifcManager.getAllItemsOfType(ifcModel.modelID, category);
+}
+
+
+async function newSubsetOfType(category) {
+  const ids = await getAll(category);
+  return ifcModel.ifcManager.createSubset({
+    modelID: ifcModel.modelID,
+    scene,
+    ids,
+    removePrevious: true,
+    customID: category.toString()
+})
+}
+
+const subsets = {};
+
+
+async function setupAllCategories(){
+  const allCategories = Object.values(projectCategoriesSet);
+  for (let i = 0; i < allCategories.length; i++){
+    const category = allCategories[i];
+    await setupCategory(category);
+  }
+}
+
+async function setupCategory(category) {
+  subsets[category] = await newSubsetOfType(category);
+  setupCheckBox(category);
+}
+
+function setupCheckBox(category) {
+	const name = getName(category);
+	const checkBox = document.getElementById(name);
+	checkBox.addEventListener('change', (event) => {
+		const checked = event.target.checked;
+		const subset = subsets[category];
+		if (checked) scene.add(subset);
+		else subset.removeFromParent();
+})};
+
+
+// ---------------------------------------------------------------
 
 
 const raycaster = new Raycaster();
@@ -265,13 +386,15 @@ async function highlight(event, material, model, getProps) {
         found.object.modelID,
         id
       );
+      const nameValue = props.ObjectType.value;
       console.log(props);
+      console.log(nameValue);
       const psets = await ifcLoader.ifcManager.getPropertySets(
         found.object.modelID,
         id,
         true
       );
-      console.log(psets);
+      // console.log(psets);
     }
 
     // Creates Subset
@@ -290,131 +413,147 @@ async function highlight(event, material, model, getProps) {
 
 // window.onmousemove = (event) =>
 //   highlight(event, preselectMat, preselectModel, false);
-window.onclick = (event) => highlight(event, selectMat, selectModel, true);
+// window.onclick = (event) => highlight(event, selectMat, selectModel, true);
 
-// 9 Debugging
 
-// const gui = new GUI();
+// DESPLEGABLE ----------------------------------------------
+var coll = document.getElementsByClassName("collapsible");
+var i;
 
-// IFC SPATIAL TREE
-
-function createTreMenu(ifcProject) {
-    const root = document.getElementById("tree-root");
-    removeAllChildren(root);
-    const ifcProjectNode = createNestedChild(root, ifcProject);
-    for(const child of ifcProject.children) {
-        constructTreeMenuNode(ifcProjectNode, child);
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.display === "block") {
+      content.style.display = "none";
+    } else {
+      content.style.display = "block";
     }
-}
-
-function constructTreeMenuNode(parent, node) {
-    const children = node.children;
-    if(children.length === 0) {
-        createSimpleChild(parent, node);
-        return;
-    }
-    const nodeElement = createNestedChild(parent, node);
-    for(const child of children) {
-        constructTreeMenuNode(nodeElement, child);
-    }
-}
-
-function createSimpleChild(parent, node) {
-    const content = nodeToString(node);
-    const childNode = document.createElement('li');
-    childNode.classList.add('leaf-node');
-    childNode.textContent = content;
-    parent.appendChild(childNode)
-}
-
-function createNestedChild(parent, node) {
-    const content = nodeToString(node);
-    const root = document.createElement('li');
-    createTitle(root, content);
-    const childrenContainer = document.createElement('ul');
-    childrenContainer.classList.add('nested');
-    root.appendChild(childrenContainer);
-    parent.appendChild(root);
-    return childrenContainer;
-}
-
-function createTitle(parent, content) {
-    const title = document.createElement('span');
-    title.classList.add('caret');
-    title.onclick = () => {
-        title.parentElement.querySelector('.nested').classList.toggle('active');
-        title.classList.toggle('caret-down');
-    }
-
-    title.textContent = content;
-    parent.appendChild(title);
-}
-
-function nodeToString(node) {
-    return `${node.type}`
-    // return `${node.type} - ${node.expressID}`
-}
-
-function removeAllChildren(element) {
-    while(element.firstChild) {
-        element.removeChild(element.firstChild);
-    }
-}
-
-const toggler = document.getElementsByClassName("caret");
-let i;
-
-for (i = 0; i < toggler.length; i++) {
-  toggler[i].addEventListener("click", function () {
-    this.parentElement.querySelector(".nested").classList.toggle("active");
-    this.classList.toggle("caret-down");
   });
 }
 
+function createCheckbox(arrayOfNames) {
+    for (let name of arrayOfNames) {
+    const checkboxContainer = document.getElementById("checkboxContainer");
+    const categoryBox = document.createElement('div');
+    const categoryName = document.createElement('div');
+    categoryBox.classList.add("checkbox");
 
-function getName(category) {
-  const names = Object.keys(categories);
-  return names.find(name => categories[name] === category)
-}
+    const categoryCheckbox = document.createElement('input');
+    categoryCheckbox.type = "checkbox";
+    categoryCheckbox.classList.add("input");
+    categoryCheckbox.checked = true;
+    categoryCheckbox.setAttribute('id', name);
+    const nameClean = name.slice(3);
+    categoryName.textContent = nameClean;
+    categoryName.classList.add("checkboxText");
 
-async function getAll(category) {
-  return autoModel.ifcManager.getAllItemsOfType(autoModel.modelID, category);
-}
-
-async function newSubsetOfType(category) {
-  const ids = await getAll(category);
-  return autoModel.ifcManager.createSubset({
-    modelID: autoModel.modelID,
-    scene,
-    ids,
-    removePrevious: true,
-    customID: category.toString()
-})
-}
-
-const subsets = {};
-
-async function setupAllCategories(){
-  const allCategories = Object.values(categories);
-  for (let i=0; i < allCategories.length; i++){
-    const category = allCategories[i];
-    await setupCategory(category);
+    checkboxContainer.appendChild(categoryBox);
+    categoryBox.appendChild(categoryCheckbox);
+    categoryBox.appendChild(categoryName);
   }
 }
 
-async function setupCategory(category) {
-  subsets[category] = await newSubsetOfType(category);
-  setupCheckBox(category);
+
+// BACK BUTTON -----------------------------------------------------------
+const back = document.getElementById("backContainer");
+
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-function setupCheckBox(category) {
-  const name = getName(category);
-  const checkBox = document.getElementById(name);
-  checkBox.addEventListener('change', (event) => {
-    const checked = event.target.checked;
-    const subset = subsets[category];
-    if (checked) scene.add(subset);
-    else subset.removeFromParent();
-  });
+back.onclick = function especialidadClick() {
+  sleep(500).then(() => history.back());
 }
+
+
+//Animation loop
+const animate = () => {
+  controls.update();
+
+  clippingPlane.constant = controlClipping.z;
+
+  renderer.render(scene, camera);
+  requestAnimationFrame(animate);
+};
+
+animate();
+
+
+// AQUI FALTARÍA EL DISPOSE PARA LIMPIAR LA MEMORIA-----------------------
+
+// IFC SPATIAL TREE -----------------------------------------------------
+
+// function createTreMenu(ifcProject) {
+//     const root = document.getElementById("tree-root");
+//     removeAllChildren(root);
+//     const ifcProjectNode = createNestedChild(root, ifcProject);
+//     for(const child of ifcProject.children) {
+//         constructTreeMenuNode(ifcProjectNode, child);
+//     }
+// }
+
+// function constructTreeMenuNode(parent, node) {
+//     const children = node.children;
+//     if(children.length === 0) {
+//         createSimpleChild(parent, node);
+//         return;
+//     }
+//     const nodeElement = createNestedChild(parent, node);
+//     for(const child of children) {
+//         constructTreeMenuNode(nodeElement, child);
+//     }
+// }
+
+// function createSimpleChild(parent, node) {
+//     const content = nodeToString(node);
+//     const childNode = document.createElement('li');
+//     childNode.classList.add('leaf-node');
+//     childNode.textContent = content;
+//     parent.appendChild(childNode)
+// }
+
+// function createNestedChild(parent, node) {
+//     const content = nodeToString(node);
+//     const root = document.createElement('li');
+//     createTitle(root, content);
+//     const childrenContainer = document.createElement('ul');
+//     childrenContainer.classList.add('nested');
+//     root.appendChild(childrenContainer);
+//     parent.appendChild(root);
+//     return childrenContainer;
+// }
+
+// function createTitle(parent, content) {
+//     const title = document.createElement('span');
+//     title.classList.add('caret');
+//     title.onclick = () => {
+//         title.parentElement.querySelector('.nested').classList.toggle('active');
+//         title.classList.toggle('caret-down');
+//     }
+
+//     title.textContent = content;
+//     parent.appendChild(title);
+// }
+
+// function nodeToString(node) {
+//     return `${node.type}`
+//     // return `${node.type} - ${node.expressID}`
+// }
+
+// function removeAllChildren(element) {
+//     while(element.firstChild) {
+//         element.removeChild(element.firstChild);
+//     }
+// }
+
+// const toggler = document.getElementsByClassName("caret");
+// let i;
+
+// for (i = 0; i < toggler.length; i++) {
+//   toggler[i].addEventListener("click", function () {
+//     this.parentElement.querySelector(".nested").classList.toggle("active");
+//     this.classList.toggle("caret-down");
+//   });
+// }
 
