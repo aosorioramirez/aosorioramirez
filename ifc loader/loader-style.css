@@ -99,6 +99,8 @@
   height: 35px;
   transition: all 0.5s;
   z-index: 2;
+  align-content: center;
+  flex-wrap: wrap;
 }
 
 .coll1 {
@@ -106,11 +108,11 @@
 }
 
 .coll2 {
-  left: 1vw;
+  left: 2vw;
 }
 
 .active {
-  background-color: #ffffff;
+  background-color: #ffffff7d;
   box-shadow: 0px 1px 2px 1px #3fbfbf82;
 }
 .collapsible:hover {
@@ -286,8 +288,21 @@
 .lil-gui.autoPlace {
   top: 400px;
   margin-bottom: 2px;
-  left: -5vw;
+  left: -55px;
 }
+
+
+
+/* MEDIA ------------------------------------------------------------- */
+@media only screen and (orientation: portrait){
+  .collapsible {
+    height: 35px;
+    width: 20vw;
+    font-size: 10pt;
+  }
+}
+
+
 
 /* IFC TREE ---------------------------------------------------*/
 
