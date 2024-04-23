@@ -85,22 +85,35 @@
 /* DESPLEGABLE CHECKBOXES------------------------------------------------------------- */
 .collapsible {
   position: fixed;
+  display: flex;
   background-color: #ffffff7d;
   box-shadow: 0px 1px 2px 1px rgb(202, 202, 202);
   color: rgb(202, 202, 202);
   border-radius: 20px;
   cursor: pointer;
   border: none;
-  text-align: center;
   outline: none;
   font-size: 15px;
-  width: 200px;
+  width: 50px;
   top: 458px;
   height: 35px;
   transition: all 0.5s;
   z-index: 2;
   align-content: center;
+  justify-content: center;
   flex-wrap: wrap;
+}
+
+img {
+  transform: scale(0.04);
+  filter: grayscale(100%) brightness(105%);
+  transition: all 0.5s;
+}
+
+img:hover {
+  filter: none;
+  filter: grayscale(50%);
+  transition: all 0.5s;
 }
 
 .coll1 {
@@ -118,15 +131,16 @@
 .collapsible:hover {
   background-color: #ffffff;
   color: #3fbfbf82;
-  box-shadow: 0px 1px 2px 1px #3fbfbf82;
+  box-shadow: 0px 2px 3px 2px #3fbfbf82;
 }
 
 #checkboxContainer {
   display: none;
   align-content: center;
   position: fixed;
-  background-color: #ffffff40;
-  right: 5vw;
+  background-color: rgba(255, 255, 255, 0.137);
+  backdrop-filter: blur(1px);
+  right: 4vw;
   top: 50px;
   height: 400px;
   width: 200px;
@@ -137,7 +151,6 @@
   display: inline-flex;
   overflow: hidden;
   font-size: small;
-  backdrop-filter: blur(1px);
   background-color: none;
   width: 100%;
   outline: none;
@@ -286,20 +299,17 @@
 }
 
 .lil-gui.autoPlace {
-  top: 400px;
+  top: 398px;
   margin-bottom: 2px;
   left: -55px;
+  background-color: rgba(255, 255, 255, 0.137);
+  backdrop-filter: blur(1px);
 }
 
 
 
 /* MEDIA ------------------------------------------------------------- */
 @media only screen and (orientation: portrait){
-  .collapsible {
-    height: 35px;
-    width: 20vw;
-    font-size: 10pt;
-  }
 }
 
 
