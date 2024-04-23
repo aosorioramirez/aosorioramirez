@@ -83258,7 +83258,7 @@ const marginRatio = 0.95;
 //console.log(canvasRect);
 
 //Creates the camera (point of view of the user)
-const camera = new PerspectiveCamera(75, canvasRect.width / canvasRect.height);
+const camera = new PerspectiveCamera(50, canvasRect.width / canvasRect.height);
 camera.position.z = 15;
 camera.position.y = 13;
 camera.position.x = 8;
@@ -83269,8 +83269,17 @@ const lightColor = "white";
 const ambientLight = new AmbientLight(lightColor, 0.5);
 scene.add(ambientLight);
 
+const cameraFrustum = 50;
+
 const directionalLight = new DirectionalLight(lightColor, 0.5);
 directionalLight.position.set(10, 10, 5);
+directionalLight.castShadow = true;
+directionalLight.shadow.camera.near = 0.5;
+directionalLight.shadow.camera.far = 500;
+directionalLight.shadow.camera.top = cameraFrustum;
+directionalLight.shadow.camera.bottom = -cameraFrustum;
+directionalLight.shadow.camera.left = -cameraFrustum;
+directionalLight.shadow.camera.right = cameraFrustum;
 scene.add(directionalLight);
 
 //Sets up the renderer, fetching the canvas of the HTML
@@ -83278,6 +83287,9 @@ const renderer = new WebGLRenderer({ canvas: threeCanvas, alpha: true });
 renderer.setSize(canvasRect.width, canvasRect.height);
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 renderer.localClippingEnabled = true;
+renderer.shadowMap.enabled = true;
+renderer.shadowMap.type = PCFShadowMap;
+renderer.shadowMap.setSize = 2048;
 
 let controlClipping = {z:0};
 let clippingVector = new Vector3( 0, -1, 0);
@@ -83288,11 +83300,6 @@ axes.material.depthTest = false;
 axes.renderOrder = 1;
 scene.add(axes);
 
-//Creates the orbit controls (to navigate the scene)
-const controls = new OrbitControls(camera, threeCanvas);
-controls.enableDamping = true;
-controls.zoomToCursor = true;
-controls.target.set(-2, 0, 0);
 
 //Adjust the viewport to the size of the browser
 window.addEventListener("resize", () => {
@@ -83345,28 +83352,9 @@ async function loadIfc() {
   ifcModel.castShadow = true;
   ifcModel.removeFromParent();
 
-  let allMaterials = ifcModel.material;
-
-  allMaterials[0].clippingPlanes = [clippingPlane];
-  for (let mat of allMaterials) {
-    mat.clippingPlanes = [clippingPlane];
-  }
+  await getAllModelCategories(ifcModel);
 
   console.log(ifcModel);
-
-  // MODEL BOUNDING BOX
-  let minZ = Math.floor(ifcModel.geometry.boundingBox.min.y);
-  console.log(minZ);
-  let maxZ = Math.ceil(ifcModel.geometry.boundingBox.max.y);
-  console.log(maxZ);
-  // GUI  -----------------------------------------------------------
-  let gui = new g(); 
-  gui.domElement.id = 'gui'; 
-  gui_container.appendChild(gui.domElement); 
-  gui.add(controlClipping, 'z', minZ, maxZ, 0.01).name('Altura');
-  gui.add(controlClipping, 'z', minZ, maxZ, 0.01).name('Plano de corte');
-
-  await getAllModelCategories(ifcModel);
 
   let projectCategoriesYes = projectCategoriesNames.filter(x=> !projectCategoriesNo.includes(x));
 
@@ -83384,11 +83372,33 @@ async function loadIfc() {
     Object.assign(projectCategoriesSet, projectCategories[indexOfYes]);
   }
 
-  
-  // const project = await autoModel.ifcManager.getSpatialStructure(autoModel.modelID);
-  // createTreMenu(project);
-
   await setupAllCategories();
+
+  // MODEL BOUNDING BOX
+  let minZ = Math.floor(ifcModel.geometry.boundingBox.min.y);
+  let maxZ = Math.ceil(ifcModel.geometry.boundingBox.max.y);
+
+  let allMaterials = ifcModel.material;
+  let plSection = {add: false};
+
+  // GUI  -----------------------------------------------------------
+  let gui = new g(); 
+  gui.domElement.id = 'gui'; 
+  gui_container.appendChild(gui.domElement);
+  gui.add(plSection, 'add').name('Plano');
+  gui.add(controlClipping, 'z', minZ, maxZ, 0.01).name('Altura');
+
+  let inputClipping = document.querySelector("label.widget input[type=checkbox]");
+
+  inputClipping.addEventListener('click', () => {
+    for (let mat of allMaterials) {
+      if (plSection.add === false) {
+        mat.clippingPlanes = [clippingPlane];
+      } else {
+        mat.clippingPlanes = null;
+      }    
+    }
+  });
 }
 
 
@@ -83412,6 +83422,16 @@ loadIfc();
 readWasm();
 setUpMultiThreading();
 setupProgressNotification();
+
+
+//CREATES THE ORBIT CONTROLS (TO NAVIGATE THE SCENE) -------------------
+const controls = new OrbitControls(camera, threeCanvas);
+controls.enableZoom = true;
+controls.enableDamping = true;
+controls.zoomToCursor = true;
+controls.target.set(-2, 0, 0);
+
+controls.update();
 
 
 // GET THE NAME OF CATEGORIES ----------------------------------------

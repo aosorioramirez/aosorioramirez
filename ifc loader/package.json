@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "camera-controls": "^2.8.3",
     "web-ifc-three": "^0.0.117"
   },
   "devDependencies": {
