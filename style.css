@@ -99,29 +99,37 @@ img {
 
 /* IMAGE CONTAINER ------------------------------------------------------------- */
 .slideshow-container {
-  max-width: 1500px;
   position: relative;
-  z-index: 0;
-  height: 500px;
+  left: 5px;
+  right: 5px;
+  z-index: 10;
+  height: 50vw;
+  min-height: 300px;
+  max-height: 500px;
 }
 
 .mySlides {
-  margin-top: 0;
+  margin-bottom: 0;
   display: none;
   position: absolute;
-  height: 100%;
   width: 100%;
   background: none;
+}
+
+img {
+  object-fit: cover;
+  height: 50vw;
+  min-height: 300px;
+  max-height: 500px;
 }
 
 #prev, #next {
   cursor: pointer;
   position: absolute;
   background-color: #21212100;
-  top: 65%;
+  top: 50%;
   width: auto;
   padding: 16px;
-  margin-top: -22px;
   color: #3FBFBF;
   font-weight: bold;
   font-size: 18px;
@@ -178,6 +186,10 @@ img {
 }
 
 .active, .dot:hover {
+  background-color: #3FBFBF;
+}
+
+.dot:hover {
   background-color: #717171;
 }
 

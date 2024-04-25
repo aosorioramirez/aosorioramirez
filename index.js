@@ -96,7 +96,8 @@ for (const nombre of nombresEspecialidades) {
   }
 
   text.onclick = function especialidadClick() {
-    sleep(500).then(() => location.href = nombre.url);
+    // sleep(500).then(() => location.href = nombre.url);
+    sleep(300).then(() => location.href = nombre.url);
   }
 
 

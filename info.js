@@ -1,11 +1,12 @@
 export const nombresEspecialidades = [
-    {'name': "SOBRE MÍ", 'icon': "🐻​", 'url': "sobre-mi.html"},
-    {'name': "HABILIDADES Y CONOCIMIENTOS", 'icon':  "🧠", 'url': "indexcarta.html"},
-    {'name': "IMPRESIÓN 3D", 'icon':  "🧵", 'url': "indexcarta.html"},
-    {'name': "GRASSHOPPER", 'icon': "🦗", 'url': "indexcarta.html"},
-    {'name': "DYNAMO", 'icon': "⚙️", 'url': "indexcarta.html"},
-    {'name': "PROGRAMACIÓN", 'icon': "💻", 'url': "indexcarta.html"},
-    {'name': "TFM: STRUCTURES RHINO.INSIDE", 'icon': "🌉", 'url': "indexcarta.html"}
+    {'name': "SOBRE MÍ", 'icon': "🐻​", 'url': "./curriculum/sobre-mi.html"},
+    {'name': "CONOCIMIENTOS E INTERESES", 'icon':  "🧠", 'url': "./curriculum/conocimientos-e-intereses.html"},
+    {'name': "BIM", 'icon':  "🛠️", 'url': "./curriculum/bim.html"},
+    {'name': "GRASSHOPPER", 'icon': "🦗", 'url': "./curriculum/grasshopper.html"},
+    {'name': "DYNAMO", 'icon': "⚙️", 'url': "./curriculum/dynamo.html"},
+    {'name': "IMPRESIÓN 3D", 'icon':  "🧵", 'url': "./curriculum/impresion-3d.html"},
+    {'name': "PROGRAMACIÓN", 'icon': "💻", 'url': "./curriculum/programacion.html"},
+    {'name': "TFM: STRUCTURES RHINO.INSIDE", 'icon': "🌉", 'url': "./curriculum/tfm.html"}
 ]
 
 export const nombresProyectos = [
