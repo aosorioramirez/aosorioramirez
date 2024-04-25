@@ -1,12 +1,12 @@
 export const nombresEspecialidades = [
-    {'name': "SOBRE MÍ", 'icon': "🐻​", 'url': "./curriculum/sobre-mi.html"},
-    {'name': "CONOCIMIENTOS E INTERESES", 'icon':  "🧠", 'url': "./curriculum/conocimientos-e-intereses.html"},
-    {'name': "BIM", 'icon':  "🛠️", 'url': "./curriculum/bim.html"},
-    {'name': "GRASSHOPPER", 'icon': "🦗", 'url': "./curriculum/grasshopper.html"},
-    {'name': "DYNAMO", 'icon': "⚙️", 'url': "./curriculum/dynamo.html"},
-    {'name': "IMPRESIÓN 3D", 'icon':  "🧵", 'url': "./curriculum/impresion-3d.html"},
-    {'name': "PROGRAMACIÓN", 'icon': "💻", 'url': "./curriculum/programacion.html"},
-    {'name': "TFM: STRUCTURES RHINO.INSIDE", 'icon': "🌉", 'url': "./curriculum/tfm.html"}
+    {'name': "CONOCIMIENTOS E INTERESES", 'icon':  "🧠", 'url': "./curriculum/conocimientos-e-intereses.html", 'side': "left"},
+    {'name': "SOBRE MÍ", 'icon': "🐻​", 'url': "./curriculum/sobre-mi.html", 'side': "right"},
+    {'name': "BIM", 'icon':  "🛠️", 'url': "./curriculum/bim.html", 'side': "left"},
+    {'name': "IMPRESIÓN 3D", 'icon':  "🧵", 'url': "./curriculum/impresion-3d.html", 'side': "right"},
+    {'name': "GRASSHOPPER", 'icon': "🦗", 'url': "./curriculum/grasshopper.html", 'side': "left"},
+    {'name': "DYNAMO", 'icon': "⚙️", 'url': "./curriculum/dynamo.html", 'side': "right"},
+    {'name': "PROGRAMACIÓN", 'icon': "💻", 'url': "./curriculum/programacion.html", 'side': "left"},
+    {'name': "TFM: STRUCTURES RHINO.INSIDE", 'icon': "🌉", 'url': "./curriculum/tfm.html", 'side': "right"}
 ]
 
 export const nombresProyectos = [

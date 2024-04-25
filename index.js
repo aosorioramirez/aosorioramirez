@@ -90,6 +90,9 @@ for (const nombre of nombresEspecialidades) {
   container.classList.add("especialidadContainer");
   textSimbol.classList.add("especialidadSimbolo");
   text.classList.add("especialidadTexto");
+  container.classList.add(`container${nombre.side}`);
+  text.classList.add(nombre.side);
+  textSimbol.classList.add(nombre.side);
 
   function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
