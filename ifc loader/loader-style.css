@@ -48,9 +48,12 @@
   border-radius: 20px;
   transition: all 0.5s;
   color: rgb(122, 122, 122);
+  display: flex;
+  align-content: center;
 }
 #backContainer:hover {
   color: rgb(87, 87, 87);
+  background-color: #ffffffc2;
   box-shadow: 0px 1px 2px 1px #3fbfbf82;
   cursor: pointer;
 }
@@ -70,6 +73,7 @@
 }
 #backArrow {
   position: absolute;
+  align-content: center;
   transition: all 0.5s;
   width: 80px;
   left: -10px;
@@ -86,7 +90,7 @@
 .collapsible {
   position: fixed;
   display: flex;
-  background-color: #ffffff7d;
+  background-color: #ffffffde;
   box-shadow: 0px 1px 2px 1px rgb(202, 202, 202);
   color: rgb(202, 202, 202);
   border-radius: 20px;
@@ -125,8 +129,9 @@ img:hover {
 }
 
 .active {
-  background-color: #ffffff7d;
+  background-color: #ffffffde;
   box-shadow: 0px 1px 2px 1px #3fbfbf82;
+  color: #ffffff7d;
 }
 .collapsible:hover {
   background-color: #ffffff;
@@ -271,12 +276,13 @@ img:hover {
 }
 
 .lil-gui {
-  color: #313f8f;
+  color: #000000;
   background: none;
   --tittle-background-color: #3fbfbf00;
   --widget-color: #3fbfbf18;
   --hover-color: #4f4f4f14;
   --focus-color: #4f4f4f14;
+  --number-color: #000000;
 }
 
 .lil-gui .title {
@@ -287,9 +293,18 @@ img:hover {
   text-align: right;
 }
 
+.lil-gui .controller.number .slider {
+  background-color: #ffffff76;
+}
+.lil-gui .controller.number .slider:hover {
+  background-color: #f0f0f076;
+}
+
 .lil-gui input {
   text-align: center;
   width: 10px;
+  color: #000000;
+  background-color: #ffffff76 ;
 }
 
 .title {

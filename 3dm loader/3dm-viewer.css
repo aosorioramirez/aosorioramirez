@@ -205,32 +205,108 @@
   z-index: -2;
 }
 
+/* COLLAPSIBLE -------------------------------------------------------*/
+.collapsible {
+  position: fixed;
+  display: flex;
+  background-color: #ffffffde;
+  box-shadow: 0px 1px 2px 1px rgb(202, 202, 202);
+  color: rgb(202, 202, 202);
+  border-radius: 20px;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  font-size: 15px;
+  width: 50px;
+  top: 458px;
+  height: 35px;
+  transition: all 0.5s;
+  z-index: 2;
+  align-content: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+img {
+  transform: scale(0.04);
+  filter: grayscale(100%) brightness(105%);
+  transition: all 0.5s;
+}
+
+img:hover {
+  filter: none;
+  filter: grayscale(50%);
+  transition: all 0.5s;
+}
+
+.coll2 {
+  left: 2vw;
+}
+
+.active {
+  background-color: #ffffffde;
+  box-shadow: 0px 1px 2px 1px #3fbfbf82;
+  color: #ffffff7d;
+}
+.collapsible:hover {
+  background-color: #ffffff;
+  color: #3fbfbf82;
+  box-shadow: 0px 2px 3px 2px #3fbfbf82;
+}
+
+
 /* GUI-CONTAINER ----------------------------------------------------- */
 #gui_container {
+  display: none;
   position: fixed;
-  margin-right: 0px;
-  right: 5vw;
-  top: 0px;
+  top: 425px;
+  z-index: 15;
 }
 
 .lil-gui {
-  color: #313f8f;
+  color: #000000;
   background: none;
   --tittle-background-color: #3fbfbf00;
   --widget-color: #3fbfbf18;
   --hover-color: #4f4f4f14;
   --focus-color: #4f4f4f14;
+  --number-color: #000000;
+}
+
+.lil-gui .title {
+  --title-height: 0px;
+}
+
+.lil-gui .controller .name {
+  text-align: right;
+}
+
+.lil-gui .controller.number .slider {
+  background-color: #ffffff76;
+}
+.lil-gui .controller.number .slider:hover {
+  background-color: #f0f0f076;
 }
 
 .lil-gui input {
   text-align: center;
-  width: 20px;
+  width: 10px;
+  color: #000000;
+  background-color: #ffffff76 ;
 }
 
 .title {
   background: none;
   visibility: collapse;
   --tittle-background-color: #3fbfbf00;
+}
+
+.lil-gui.autoPlace {
+  top: 398px;
+  margin-bottom: 2px;
+  left: -55px;
+  background-color: rgba(255, 255, 255, 0.137);
+  backdrop-filter: blur(1px);
 }
 
 

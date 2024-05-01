@@ -207,7 +207,7 @@ async function loadIfc() {
   let gui = new GUI(); 
   gui.domElement.id = 'gui'; 
   gui_container.appendChild(gui.domElement);
-  gui.add(plSection, 'add').name('Plano');
+  gui.add(plSection, 'add').name('Sección');
   gui.add(controlClipping, 'z', minZ, maxZ, 0.01).name('Altura');
 
   let inputClipping = document.querySelector("label.widget input[type=checkbox]")

@@ -19,20 +19,43 @@
     top: 1rem;
     z-index: 20;
 }
+#titulo {
+    filter: invert(1);
+    mix-blend-mode: difference;
+    width: auto;
+    height: 30px;
+    font-size: 20px;
+    background-color: rgba(255, 255, 255, 0);
+    position: fixed;
+    padding: 5px;
+    margin: auto;
+    text-align: right;
+    right: 2.5vw;
+    top: 2.9rem;
+    z-index: 20;
+}
 
 .container {
-    border: 1px solid rgb(178, 245, 249);
+    border: 1px solid rgba(178, 245, 249, 0.643);
     margin-bottom: 30px;
     margin-top: 10px;
-    display: block;
+    font-size: 15px;
+    display: inline-flex;
     align-items: center;
     flex-wrap: wrap;
     justify-content: space-between;
     text-align: center;
+    align-content: flex-start;
+    align-items: flex-start;
 }
 
-.title {
+.titleLeft {
     margin-bottom: 10px;
+    text-align: left;
+}
+.titleRight {
+    margin-bottom: 10px;
+    text-align: right;
 }
 
 .text {
@@ -40,17 +63,63 @@
     margin-bottom: 10px;
 }
 
-
 img {
     display: block;
-    height: 250px;
-    object-fit: cover;
+    height: 300px;
     margin-bottom: 10px;
 }
 
-.ancha {
-    width: 95vw;
+
+
+.cover {
+    object-fit: cover;
 }
+.contain {
+    object-fit: contain;
+}
+
+
+
+.muyAncho {
+    width: 100%;
+}
+.ancho {
+    width: 100%;
+}
+.mitad {
+    width: 49.5%;
+}
+.tercio {
+    width: 33%;
+}
+
+#fullpage {
+    display: none;
+    position: absolute;
+    padding: 0px;
+    z-index: 9999;
+    top: 0px;
+    width: 100vw;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0.776);
+    backdrop-filter: blur(1px);
+    overflow: hidden;
+}
+#imageFullPage {
+    position: absolute;
+    object-fit: contain;
+    background-color: rgba(255, 255, 255, 0);
+    width: 75%;
+    height: 75%;
+    overflow: hidden;
+}
+.stop-scrolling {
+    height: 100%;
+    overflow: hidden;
+}
+
 
 
 
@@ -58,15 +127,20 @@ img {
 
     .container {
         display: inline-flex;
-        
+        margin-bottom: 10px;
     }
 
-    .container .right {
-        text-align: right;
+    .left {
+        width: 40vw;
+        display: inline-flex;
+        text-align: justify;
     }
-
-    .container .left {
-        text-align: left;
+    .right {
+        width: 44vw;
+        display: inline-flex;
+    }
+    #titulo {
+        right: 4vw;
     }
 
     .title .right {
@@ -77,11 +151,29 @@ img {
         display: inline-flex;
         object-fit: cover;
         width: 50vw;
-        height: 300px;
+        height: 400px;
     }
+    .cover {
+        object-fit: cover;
+    }
+    .contain {
+        object-fit: contain;
+    }   
 
-    .text {
-        width: 44vw;
-        display: inline-flex;
+
+    .muyAncho {
+        width: 100%;
+    }
+    .ancho {
+        width: 80%;
+    }
+    .estrecho {
+        width: 19%;
+    }
+    .mitad {
+        width: 49.5%;
+    }
+    .tercio {
+        width: 33%;
     }
 }
