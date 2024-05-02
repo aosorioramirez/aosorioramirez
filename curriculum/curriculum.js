@@ -81,7 +81,12 @@ for (let container of containers) {
 
   dashContainer.appendChild(dash);
   container.after(dashContainer);
+  
+  function getRandomValue(min, max) {
+    return Math.floor(Math.random() * (max - min) + min)
+  }
 
   dashContainer.classList.add("dashContainer");
+  dash.style.animationDelay = (getRandomValue(-50,0)) + 's';
   dash.classList.add("dash");
 }
