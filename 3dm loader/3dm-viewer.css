@@ -313,17 +313,26 @@ img:hover {
 
 
 /* MEDIA ------------------------------------------------------------- */
-/* @media only screen and (orientation: portrait){
-  #three-canvas{
+@media only screen and (max-width: 1000px) and (orientation: landscape) {
+  /* #three-canvas{
     float: left;
     width: 50vw;
-  }
+  } */
   #container-spinner{
-    float: left;
-    width: 50vw;
+    height: 100%;
   }
+
+
   #nombreProyecto{
-    width: 50vw;
+    bottom: -20px;
     text-align: center;
   }
-} */
+  .collapsible {
+    bottom: 10px;
+    top: auto;
+  }
+  #gui_container {
+    top: auto;
+    bottom: 50px;
+  }
+}
