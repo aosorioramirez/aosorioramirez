@@ -36,3 +36,17 @@ fullPage.addEventListener('click', function() {
   document.body.classList.remove("stop-scrolling");
 });
 
+// INSERT A DASH
+
+const containers = document.getElementsByClassName('container');
+
+for (let container of containers) {
+  const dashContainer = document.createElement ("div");
+  const dash = document.createElement("div");
+
+  dashContainer.appendChild(dash);
+  container.after(dashContainer);
+
+  dashContainer.classList.add("dashContainer");
+  dash.classList.add("dash");
+}
