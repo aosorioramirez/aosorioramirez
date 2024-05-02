@@ -5,15 +5,23 @@ const imgFullPage = document.getElementById('imageFullPage');
 
 imgs.forEach(img => {
   img.addEventListener('click', function() {
+
+    document.body.classList.add("stop-scrolling");
+
     let innerH = window.innerHeight;
     let innerW = window.innerWidth;
+
+    let altText = document.createElement("div");
+    altText.classList.add("altText");
+    altText.textContent = img.alt;
+    document.body.appendChild(altText);
 
     fullPage.style.display = 'flex';
     fullPage.style.top = window.scrollY+'px';
     imgFullPage.style.content = 'url(' + img.src + ')';
 
     if (innerW > innerH && img.width < img.height) {
-      imgFullPage.style.height = '10%';
+      imgFullPage.style.height = '70%';
     } 
       else if (innerW > innerH && img.width > img.height) {
         imgFullPage.style.width = '80%';
@@ -28,12 +36,39 @@ imgs.forEach(img => {
       imgFullPage.style.height = '50%';
     };
 
-    document.body.classList.add("stop-scrolling");
+    const contTop = imgFullPage.getBoundingClientRect().y;
+
+    const contHeight = imgFullPage.getBoundingClientRect().height;
+    const contWidth = imgFullPage.getBoundingClientRect().width;
+    const contProp = contHeight / contWidth;
+
+    const imageHeight = img.naturalHeight;
+    const imageWidth = img.naturalWidth;
+    const imageProp = imageHeight / imageWidth;
+
+    const max = Math.max(contProp, imageProp);
+    const min = Math.min(contProp, imageProp);
+
+    const topBase = 10 + ((contTop) + (contHeight/2) + (window.scrollY));
+
+    let result;
+    function getMax (imageProp, contProp) {
+      if (contProp > imageProp) { result = (contHeight/2)*(imageProp/contProp)} 
+      else {result = contHeight/2}
+    }
+
+    const rest = getMax(imageProp, contProp);
+
+    console.log(result);
+
+    altText.style.top = topBase + result + 'px';
   });
 });
 
 fullPage.addEventListener('click', function() {
   document.body.classList.remove("stop-scrolling");
+  let altTextCreated = document.getElementsByClassName('altText');
+  altTextCreated[0].remove();
 });
 
 // INSERT A DASH

@@ -48,33 +48,36 @@
 }
 
 .dashContainer {
-    width: 100vw;
-    height: 140px;
+    position: relative;
     display: flex;
-    align-content: center;
+    width: 100vw;
+    height: 60px;
+    display: flex;
+    align-items: center;
     justify-content: center;
 
 }
 .dash {
+    position: absolute;
+    top: 50%;
     width: 5px;
     height: 5px;
     border-radius: 50%;
     background-color: #3FBFBF;
     filter: blur("10px");
-    margin: 70px;
-    box-shadow: 2px 0px 5px 0px rgb(202, 202, 202);
+    box-shadow: 1px 0px 5px 0px rgb(202, 202, 202);
     color: rgb(202, 202, 202);
-    animation: bounce 40s ease-in-out infinite;
+    animation: bounce 20s ease-in-out infinite;
 }
 @keyframes bounce {
     0% {
-      transform: translateX(200px);
+      transform: translateX(30vw);
     }
     50% {
-        transform: translateX(-200px);
+        transform: translateX(-30vw);
     }
     100% {
-        transform: translateX(200px);
+        transform: translateX(30vw);
     }
 }
 
@@ -149,6 +152,13 @@ img {
 .stop-scrolling {
     height: 100%;
     overflow: hidden;
+}
+.altText {
+    position: absolute;
+    z-index: 10000;
+    width: 100vw;
+    text-align: center;
+    background: none;
 }
 
 
