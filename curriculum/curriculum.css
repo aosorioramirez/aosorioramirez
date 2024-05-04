@@ -89,6 +89,10 @@
     margin-bottom: 10px;
     text-align: right;
 }
+.title {
+    margin-bottom: 10px;
+    text-align: center;
+}
 
 .text {
     text-align: justify;
