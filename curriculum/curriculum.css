@@ -7,6 +7,7 @@
 #logo {
     filter: invert(1);
     mix-blend-mode: difference;
+    cursor: pointer;
     height: 30px;
     font-size: 50px;
     background-color: rgba(255, 255, 255, 0);
@@ -22,6 +23,7 @@
 #titulo {
     filter: invert(1);
     mix-blend-mode: difference;
+    cursor: pointer;
     width: auto;
     height: 30px;
     font-size: 20px;
@@ -96,6 +98,10 @@
 
 .text {
     text-align: justify;
+    margin-bottom: 10px;
+}
+.textMiddle {
+    text-align: center;
     margin-bottom: 10px;
 }
 

@@ -59,8 +59,6 @@ imgs.forEach(img => {
 
     const rest = getMax(imageProp, contProp);
 
-    console.log(result);
-
     altText.style.top = topBase + result + 'px';
   });
 });
@@ -90,3 +88,15 @@ for (let container of containers) {
   dash.style.animationDelay = (getRandomValue(-50,0)) + 's';
   dash.classList.add("dash");
 }
+
+// AOR TO START PAGE
+
+const aor = document.getElementById("logo");
+aor.addEventListener('click', function() { 
+  location = '../index.html';
+});
+
+const titulo = document.getElementById("titulo");
+titulo.addEventListener('click', function() {
+  window.scrollTo(0,0);
+})
