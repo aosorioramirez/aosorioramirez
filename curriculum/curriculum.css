@@ -1,7 +1,7 @@
 * {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     background-color: white;
-    width: 95vw;
+    width: 98vw;
 }
 
 #logo {
@@ -32,7 +32,7 @@
     padding: 5px;
     margin: auto;
     text-align: right;
-    right: 2.5vw;
+    right: 3vw;
     top: 2.9rem;
     z-index: 20;
 }
@@ -46,7 +46,7 @@
     justify-content: space-between;
     text-align: center;
     align-content: flex-start;
-    align-items: flex-start;
+    align-items: center;
 }
 
 .dashContainer {
@@ -89,6 +89,7 @@
 }
 .titleRight {
     margin-bottom: 10px;
+    margin-right: 5vw;
     text-align: right;
 }
 .title {
@@ -133,6 +134,25 @@ img {
 }
 .tercio {
     width: 33%;
+}
+.cuarto {
+    width: 49.5%;
+}
+.quinto {
+    width: 60px;
+    height: 60px;
+    padding: 10px;
+    animation: spin 10s linear infinite;
+    background: transparent;
+}
+
+@keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 #fullpage {
@@ -191,7 +211,7 @@ img {
         display: inline-flex;
     }
     #titulo {
-        right: 4vw;
+        right: 3vw;
     }
 
     .title .right {
@@ -226,5 +246,11 @@ img {
     }
     .tercio {
         width: 33%;
+    }
+    .cuarto {
+        width: 24.5%;
+    }
+    .quinto {
+        width: 8%;
     }
 }

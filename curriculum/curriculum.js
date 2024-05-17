@@ -73,16 +73,16 @@ fullPage.addEventListener('click', function() {
 
 const containers = document.getElementsByClassName('container');
 
+function getRandomValue(min, max) {
+  return Math.floor(Math.random() * (max - min) + min)
+}
+
 for (let container of containers) {
   const dashContainer = document.createElement ("div");
   const dash = document.createElement("div");
 
   dashContainer.appendChild(dash);
   container.after(dashContainer);
-  
-  function getRandomValue(min, max) {
-    return Math.floor(Math.random() * (max - min) + min)
-  }
 
   dashContainer.classList.add("dashContainer");
   dash.style.animationDelay = (getRandomValue(-50,0)) + 's';
@@ -100,3 +100,11 @@ const titulo = document.getElementById("titulo");
 titulo.addEventListener('click', function() {
   window.scrollTo(0,0);
 })
+
+// prog icons spinning
+
+const progIcons = document.getElementsByClassName("quinto");
+
+for (let progIcon of progIcons) {
+  progIcon.style.animationDelay = (getRandomValue(-50,0)) + 's';
+}
