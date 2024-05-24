@@ -5,8 +5,8 @@ export const nombresEspecialidades = [
     {'name': "IMPRESIÓN 3D", 'icon':  "🧵", 'url': "./curriculum/impresion-3d.html", 'side': "right"},
     {'name': "GRASSHOPPER", 'icon': "🦗", 'url': "./curriculum/grasshopper.html", 'side': "left"},
     {'name': "DYNAMO", 'icon': "⚙️", 'url': "./curriculum/dynamo.html", 'side': "right"},
-    {'name': "PFC (EN PROCESO)", 'icon': "❄️​", 'url': "", 'side': "left"},
-    {'name': "TFM: STRUCTURES RHINO.INSIDE", 'icon': "🌉", 'url': "./curriculum/tfm.html", 'side': "right"}
+    {'name': "STRUCTURES RHINO.INSIDE", 'icon': "🌉", 'url': "./curriculum/tfm.html", 'side': "left"},
+    {'name': "RESILIENCE OF SHISHMAREF", 'icon': "❄️​", 'url': "https://archivoproyectosarquitectonicos.ua.es/rosh-resilience-of-shishmaref-osorio-ramirez-adrian/", 'side': "right"}
 ]
 
 
