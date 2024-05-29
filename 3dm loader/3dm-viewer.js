@@ -304,7 +304,6 @@ for (i = 0; i < coll.length; i++) {
   });
 }
 
-// const gui = new GUI();
 
 const raycaster = new Raycaster();
 raycaster.firstHitOnly = true;
