@@ -218,7 +218,7 @@
   outline: none;
   font-size: 15px;
   width: 50px;
-  top: 858px;
+  top: 800px;
   height: 35px;
   transition: all 0.5s;
   z-index: 2;
@@ -259,7 +259,8 @@ img:hover {
 #gui_container {
   display: none;
   position: fixed;
-  top: 750px;  
+  top: auto; 
+  bottom: 125px;
   z-index: 15;
 }
 
@@ -275,7 +276,7 @@ img:hover {
 }
 
 .lil-gui.root {
-  width: 400px;
+  width: 380px;
 }
 
 .lil-gui .title {
