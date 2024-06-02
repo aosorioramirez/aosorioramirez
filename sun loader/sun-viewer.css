@@ -90,10 +90,10 @@
 }
 
 #three-canvas {
-  position: fixed;
-  top: 0;
   background-color: rgb(255, 255, 255);
-  height: 900px;
+  position: fixed;
+  top: 0px;
+  height: 100%;
   z-index: 0;
 }
 
@@ -105,7 +105,8 @@
   text-align: center;
   background-color: rgb(255, 255, 255);
   height: 50px;
-  margin-top: 842px;
+  top: auto;
+  bottom: 60px;
   z-index: 1;
   background-color: rgba(255, 255, 255, 0.137);
   backdrop-filter: blur(1px);
@@ -115,8 +116,11 @@
 .container-explicacion {
   position: absolute;
   text-align: justify;
-  z-index: -2;
-  top: 910px;
+  top: auto;
+  background-color: white;
+  bottom: 0px;
+  height: 90px;
+  z-index: 50;
 }
 
 .hidden {
@@ -137,7 +141,7 @@
 #container-spinner {
   pointer-events: none;
   background-color: white;
-  height: 900px;
+  height: 80vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -218,7 +222,8 @@
   outline: none;
   font-size: 15px;
   width: 50px;
-  top: 800px;
+  top: auto;
+  bottom: 140px;
   height: 35px;
   transition: all 0.5s;
   z-index: 2;
@@ -260,7 +265,7 @@ img:hover {
   display: none;
   position: fixed;
   top: auto; 
-  bottom: 125px;
+  bottom: 185px;
   z-index: 15;
 }
 
@@ -320,7 +325,7 @@ img:hover {
 
 
 /* MEDIA ------------------------------------------------------------- */
-@media only screen and (max-width: 1000px) and (orientation: landscape) {
+@media only screen and (max-width: 2000px) and (orientation: landscape) {
   /* #three-canvas{
     float: left;
     width: 50vw;
@@ -328,18 +333,19 @@ img:hover {
   #container-spinner{
     height: 100%;
   }
-
-
+  .container-explicacion {
+    height: 50px;
+  }
   #nombreProyecto{
-    bottom: -20px;
+    bottom: 30px;
     text-align: center;
   }
   .collapsible {
-    bottom: 10px;
+    bottom: 58px;
     top: auto;
   }
   #gui_container {
     top: auto;
-    bottom: 50px;
+    bottom: 100px;
   }
 }
