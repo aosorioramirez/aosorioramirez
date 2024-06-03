@@ -40600,7 +40600,7 @@ const renderer = new WebGLRenderer({ canvas: threeCanvas, alpha: true });
 renderer.setSize(canvasRect.width, canvasRect.height);
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 renderer.shadowMap.enabled = true;
-renderer.shadowMap.type = PCFShadowMap;
+renderer.shadowMap.type = PCFSoftShadowMap;
 renderer.shadowMap.setSize = 2048;
 
 //Creates the camera (point of view of the user)
@@ -40650,14 +40650,13 @@ rhinoLoader.load(
       
       getAllPoints(child);
 
-      if (child.type === "Mesh") {
+      if (child.type === "Mesh" ) {
         child.castShadow = true;
-        child.material.opacity = 0.9;
-        child.material.polygonOffset = true;
-        child.material.polygonOffsetFactor = 1;
-        child.material.polygonOffsetUnits = 1;
-        child.material.depthTest = false;
-        child.material.depthWrite = false;
+        // child.material.color = 0x2255ff;
+        // child.material.opacity = 1;
+        // child.material.depthTest = true;
+        // child.material.depthWrite = true;
+        // child.material.emissive = 0xffaa22;
       }
     }    scene.add(object);
 
@@ -40772,6 +40771,7 @@ directionalLight.shadow.camera.top = cameraFrustum;
 directionalLight.shadow.camera.bottom = -cameraFrustum;
 directionalLight.shadow.camera.left = -cameraFrustum;
 directionalLight.shadow.camera.right = cameraFrustum;
+
 scene.add(directionalLight);
 
 let arraySunPointsFilledName = [];

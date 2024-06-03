@@ -141,7 +141,7 @@
 #container-spinner {
   pointer-events: none;
   background-color: white;
-  height: 80vh;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
