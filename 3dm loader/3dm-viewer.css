@@ -109,7 +109,8 @@
   z-index: 1;
   background-color: rgba(255, 255, 255, 0.137);
   backdrop-filter: blur(1px);
-  font-family: "Courier New", Courier, monospace;
+  font-family: "Verdana", monospace;
+  font-size: medium;
 }
 
 .container-explicacion {
@@ -225,6 +226,7 @@
   align-content: center;
   justify-content: center;
   flex-wrap: wrap;
+  bottom: 10px;
 }
 
 img {
@@ -240,7 +242,7 @@ img:hover {
 }
 
 .coll2 {
-  left: 2vw;
+  left: 5vw;
 }
 
 .active {
@@ -259,7 +261,7 @@ img:hover {
 #gui_container {
   display: none;
   position: fixed;
-  top: 425px;
+  top: 415px;
   z-index: 15;
 }
 

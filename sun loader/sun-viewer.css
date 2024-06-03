@@ -106,11 +106,12 @@
   background-color: rgb(255, 255, 255);
   height: 50px;
   top: auto;
-  bottom: 60px;
+  bottom: 78px;
   z-index: 1;
   background-color: rgba(255, 255, 255, 0.137);
   backdrop-filter: blur(1px);
-  font-family: "Courier New", Courier, monospace;
+  font-family: "Verdana", monospace;
+  font-size: medium;
 }
 
 .container-explicacion {
@@ -223,7 +224,7 @@
   font-size: 15px;
   width: 50px;
   top: auto;
-  bottom: 140px;
+  bottom: 100px;
   height: 35px;
   transition: all 0.5s;
   z-index: 2;
@@ -245,7 +246,7 @@ img:hover {
 }
 
 .coll2 {
-  left: 2vw;
+  left: 5vw;
 }
 
 .active {
@@ -337,7 +338,7 @@ img:hover {
     height: 50px;
   }
   #nombreProyecto{
-    bottom: 30px;
+    bottom: 38px;
     text-align: center;
   }
   .collapsible {
