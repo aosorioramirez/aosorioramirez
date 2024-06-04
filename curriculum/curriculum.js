@@ -93,7 +93,7 @@ for (let container of containers) {
 
 const aor = document.getElementById("logo");
 aor.addEventListener('click', function() { 
-  location = '../index.html';
+  window.history.go(-1);
 });
 
 const titulo = document.getElementById("titulo");
