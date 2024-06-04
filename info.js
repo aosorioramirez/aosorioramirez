@@ -1,11 +1,11 @@
 export const nombresEspecialidades = [
-    {'name': "SOBRE MÍ", 'icon': "🐻​", 'url': "./curriculum/sobre-mi.html", 'side': "left"},
-    {'name': "PROGRAMACIÓN", 'icon': "💻", 'url': "./curriculum/programacion.html", 'side': "right"},
-    {'name': "BIM", 'icon':  "🛠️", 'url': "./curriculum/bim.html", 'side': "left"},
-    {'name': "IMPRESIÓN 3D", 'icon':  "🧵", 'url': "./curriculum/impresion-3d.html", 'side': "right"},
-    {'name': "GRASSHOPPER", 'icon': "🦗", 'url': "./curriculum/grasshopper.html", 'side': "left"},
-    {'name': "DYNAMO", 'icon': "⚙️", 'url': "./curriculum/dynamo.html", 'side': "right"},
-    {'name': "STRUCTURES RHINO.INSIDE", 'icon': "🌉", 'url': "./curriculum/tfm.html", 'side': "left"},
+    {'name': "SOBRE MÍ", 'icon': "🐻​", 'url': "./curriculum/sobre-mi", 'side': "left"},
+    {'name': "PROGRAMACIÓN", 'icon': "💻", 'url': "./curriculum/programacion", 'side': "right"},
+    {'name': "BIM", 'icon':  "🛠️", 'url': "./curriculum/bim", 'side': "left"},
+    {'name': "IMPRESIÓN 3D", 'icon':  "🧵", 'url': "./curriculum/impresion-3d", 'side': "right"},
+    {'name': "GRASSHOPPER", 'icon': "🦗", 'url': "./curriculum/grasshopper", 'side': "left"},
+    {'name': "DYNAMO", 'icon': "⚙️", 'url': "./curriculum/dynamo", 'side': "right"},
+    {'name': "STRUCTURES RHINO.INSIDE", 'icon': "🌉", 'url': "./curriculum/tfm", 'side': "left"},
     {'name': "RESILIENCE OF SHISHMAREF", 'icon': "❄️​", 'url': "https://archivoproyectosarquitectonicos.ua.es/rosh-resilience-of-shishmaref-osorio-ramirez-adrian/", 'side': "right"}
 ]
 
