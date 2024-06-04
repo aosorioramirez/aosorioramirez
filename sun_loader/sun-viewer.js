@@ -375,4 +375,9 @@ back.onclick = function especialidadClick() {
   sleep(500).then(() => history.back());
 }
 
+const aor = document.getElementById("logo");
+aor.addEventListener('click', function() { 
+  sleep(100).then(() => window.history.go(-1));
+});
+
 // AQUI FALTARÍA EL DISPOSE PARA LIMPIAR LA MEMORIA-----------------------

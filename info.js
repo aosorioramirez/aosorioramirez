@@ -15,7 +15,7 @@ export const nombresProyectos = [
     {'name': "TFM: ESTRUCTURAS HINCHABLES",'number': "2", 'loader': "3dm_loader/3dm-viewer", 'model': "Hinchable.3dm"},
     {'name': "TFM: PARABOLOIDES HORMIGÓN",'number': "3", 'loader': "3dm_loader/3dm-viewer", 'model': "Cascarones.3dm"},
     // {'name': "VIU I CONVIU",'number': "4", 'loader': "ifc_loader/ifc-viewer", 'model': "ARQ.ifc"},
-    {'name': "VIVIENDA AZOTEA",'number': "5", 'loader': "ifc_loader/ifc-viewer", 'model': "2203_BAS_v2_r23.ifc"},
-    {'name': "VIVIENDA CURSO IFC JS",'number': "6", 'loader': "ifc_loader/ifc-viewer", 'model': "01.ifc"},
-    {'name': "SOLEAMIENTO VALENCIA",'number': "7", 'loader': "sun_loader/sun-viewer", 'model': "sun_valencia.3dm"},
+    {'name': "VIVIENDA AZOTEA",'number': "4", 'loader': "ifc_loader/ifc-viewer", 'model': "2203_BAS_v2_r23.ifc"},
+    {'name': "VIVIENDA CURSO IFC JS",'number': "5", 'loader': "ifc_loader/ifc-viewer", 'model': "01.ifc"},
+    {'name': "SOLEAMIENTO VALENCIA",'number': "6", 'loader': "sun_loader/sun-viewer", 'model': "sun_valencia.3dm"},
 ];

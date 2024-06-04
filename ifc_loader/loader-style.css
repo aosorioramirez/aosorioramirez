@@ -99,7 +99,8 @@
   outline: none;
   font-size: 15px;
   width: 50px;
-  top: 458px;
+  top: auto;
+  bottom: 100px;
   height: 35px;
   transition: all 0.5s;
   z-index: 2;
@@ -182,10 +183,10 @@ img:hover {
 }
 
 #three-canvas {
-  position: fixed;
-  top: 0;
   background-color: rgb(255, 255, 255);
-  height: 500px;
+  position: fixed;
+  top: 0px;
+  height: 100%;
   z-index: 0;
 }
 
@@ -197,7 +198,8 @@ img:hover {
   text-align: center;
   background-color: rgb(255, 255, 255);
   height: 50px;
-  margin-top: 442px;
+  top: auto;
+  bottom: 78px;
   z-index: 1;
   background-color: rgba(255, 255, 255, 0.137);
   backdrop-filter: blur(1px);
@@ -208,18 +210,23 @@ img:hover {
 .container-explicacion {
   position: absolute;
   text-align: justify;
-  z-index: -2;
-  top: 510px;
+  top: auto;
+  background-color: white;
+  bottom: 0px;
+  height: 90px;
+  z-index: 50;
 }
 
 .hidden {
-  visibility: collapse;
+  animation-name: collapseAnimation;
+  animation-delay: 2s;
+  animation-fill-mode: forwards;
 }
 
 #container-spinner {
   pointer-events: none;
   background-color: white;
-  height: 500px;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;

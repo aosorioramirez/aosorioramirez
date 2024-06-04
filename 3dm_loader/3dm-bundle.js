@@ -40842,20 +40842,13 @@ function Rhino3dmWorker() {
 }
 
 const nombresProyectos = [
-    {'name': "TFM: ESTRUCTURAS TENSEGRITY",'number': "1", 'loader': "3dm loader/3dm-viewer", 'model': "Tensegrity.3dm"},
-    {'name': "TFM: ESTRUCTURAS HINCHABLES",'number': "2", 'loader': "3dm loader/3dm-viewer", 'model': "Hinchable.3dm"},
-    {'name': "TFM: PARABOLOIDES HORMIGÓN",'number': "3", 'loader': "3dm loader/3dm-viewer", 'model': "Cascarones.3dm"},
-    {'name': "VIU I CONVIU",'number': "4", 'loader': "ifc loader/ifc-viewer", 'model': "ARQ.ifc"},
-    {'name': "VIVIENDA AZOTEA",'number': "5", 'loader': "ifc loader/ifc-viewer", 'model': "2203_BAS_v2_r23.ifc"},
-    {'name': "VIVIENDA CURSO IFC JS",'number': "6", 'loader': "ifc loader/ifc-viewer", 'model': "01.ifc"},
-    {'name': "VIU I CONVIU",'number': "4", 'loader': "ifc loader/ifc-viewer", 'model': "ARQ.ifc"},
-    {'name': "VIVIENDA AZOTEA",'number': "5", 'loader': "ifc loader/ifc-viewer", 'model': "2203_BAS_v2_r23.ifc"},
-    {'name': "VIVIENDA CURSO IFC JS",'number': "6", 'loader': "ifc loader/ifc-viewer", 'model': "01.ifc"},
-    {'name': "VIVIENDA AZOTEA",'number': "5", 'loader': "ifc loader/ifc-viewer", 'model': "2203_BAS_v2_r23.ifc"},
-    {'name': "VIVIENDA CURSO IFC JS",'number': "6", 'loader': "ifc loader/ifc-viewer", 'model': "01.ifc"},
-    {'name': "VIU I CONVIU",'number': "4", 'loader': "ifc loader/ifc-viewer", 'model': "ARQ.ifc"},
-    {'name': "VIVIENDA AZOTEA",'number': "5", 'loader': "ifc loader/ifc-viewer", 'model': "2203_BAS_v2_r23.ifc"},
-    {'name': "VIVIENDA CURSO IFC JS",'number': "6", 'loader': "ifc loader/ifc-viewer", 'model': "01.ifc"}
+    {'name': "TFM: ESTRUCTURAS TENSEGRITY",'number': "1", 'loader': "3dm_loader/3dm-viewer.html", 'model': "Tensegrity.3dm"},
+    {'name': "TFM: ESTRUCTURAS HINCHABLES",'number': "2", 'loader': "3dm_loader/3dm-viewer.html", 'model': "Hinchable.3dm"},
+    {'name': "TFM: PARABOLOIDES HORMIGÓN",'number': "3", 'loader': "3dm_loader/3dm-viewer.html", 'model': "Cascarones.3dm"},
+    // {'name': "VIU I CONVIU",'number': "4", 'loader': "ifc_loader/ifc-viewer", 'model': "ARQ.ifc"},
+    {'name': "VIVIENDA AZOTEA",'number': "5", 'loader': "ifc_loader/ifc-viewer", 'model': "2203_BAS_v2_r23.ifc"},
+    {'name': "VIVIENDA CURSO IFC JS",'number': "6", 'loader': "ifc_loader/ifc-viewer", 'model': "01.ifc"},
+    {'name': "SOLEAMIENTO VALENCIA",'number': "7", 'loader': "sun_loader/sun-viewer", 'model': "sun_valencia.3dm"},
 ];
 
 /**
@@ -41123,7 +41116,6 @@ for (i = 0; i < coll.length; i++) {
   });
 }
 
-// const gui = new GUI();
 
 const raycaster = new Raycaster();
 raycaster.firstHitOnly = true;
@@ -41239,7 +41231,12 @@ function sleep(ms) {
 }
 
 back.onclick = function especialidadClick() {
-  sleep(500).then(() => history.back());
+  sleep(500).then(() => window.history.go(-1));
 };
+
+const aor = document.getElementById("logo");
+aor.addEventListener('click', function() { 
+  sleep(100).then(() => window.history.go(-1));
+});
 
 // AQUI FALTARÍA EL DISPOSE PARA LIMPIAR LA MEMORIA-----------------------
