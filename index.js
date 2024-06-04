@@ -129,6 +129,7 @@ for (const proyecto of nombresProyectos) {
 
   text.onclick = function () {
     location.href = `${proyecto.loader}`;
+    console.log(proyecto.loader);
     const currentProjectNumber = proyecto.number;
     localStorage.setItem("projectNumber", currentProjectNumber);
   };
