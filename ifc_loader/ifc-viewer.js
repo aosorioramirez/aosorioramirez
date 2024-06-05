@@ -54,6 +54,7 @@ import { MeshLambertMaterial } from "three";
 
 import { nombresProyectos, nombresEspecialidades } from "../info.js";
 
+
 const currentProjectNumber = localStorage.getItem("projectNumber");
 const currentProject = nombresProyectos[currentProjectNumber-1];
 
@@ -176,7 +177,7 @@ async function loadIfc() {
 
   await getAllModelCategories(ifcModel);
 
-  console.log(ifcModel);
+  // console.log(ifcModel);
 
   let projectCategoriesYes = projectCategoriesNames.filter(x=> !projectCategoriesNo.includes(x));
 
@@ -499,6 +500,7 @@ const animate = () => {
 };
 
 animate();
+
 
 
 // AQUI FALTARÍA EL DISPOSE PARA LIMPIAR LA MEMORIA-----------------------

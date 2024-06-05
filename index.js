@@ -15,6 +15,8 @@ import { nombresProyectos, nombresEspecialidades } from "./info.js";
 
 //SLIDES ----------------------------------------------------------------------------
 
+// location.reload(true);
+
 let slides = document.getElementsByClassName("mySlides");
 let arraySlides = Array.from(slides);
 const containerDot = document.querySelector("#dotContainer");
@@ -101,7 +103,6 @@ for (const nombre of nombresEspecialidades) {
   text.onclick = function especialidadClick() {
     // sleep(500).then(() => location.href = nombre.url);
     sleep(300).then(() => location.href = nombre.url);
-    console.log(nombre.url);
   }
 
 
@@ -129,7 +130,6 @@ for (const proyecto of nombresProyectos) {
 
   text.onclick = function () {
     location.href = `${proyecto.loader}`;
-    console.log(proyecto.loader);
     const currentProjectNumber = proyecto.number;
     localStorage.setItem("projectNumber", currentProjectNumber);
   };

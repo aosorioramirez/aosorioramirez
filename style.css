@@ -37,6 +37,7 @@ img {
   left: 1rem;
   top: 1rem;
   z-index: 20;
+  user-select: none;
 }
 #logo:hover {
   cursor: pointer;
