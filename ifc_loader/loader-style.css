@@ -337,8 +337,9 @@ img:hover {
 }
 
 .lil-gui.autoPlace {
-  top: 398px;
+  top: auto;
   margin-bottom: 2px;
+  bottom: 140px;
   left: -55px;
   background-color: rgba(255, 255, 255, 0.137);
   backdrop-filter: blur(1px);
