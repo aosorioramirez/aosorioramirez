@@ -223,6 +223,15 @@ img:hover {
   animation-fill-mode: forwards;
 }
 
+@keyframes collapseAnimation {
+  from {
+    visibility: visible;
+  }
+  to {
+    visibility: collapse;
+  }
+}
+
 #container-spinner {
   pointer-events: none;
   background-color: white;
