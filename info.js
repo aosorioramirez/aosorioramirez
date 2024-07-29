@@ -17,7 +17,7 @@ export const nombresProyectos = [
     {'name': "VIVIENDA AZOTEA",'number': "4", 'loader': "ifc_loader/ifc-viewer", 'model': "2203_BAS_v2_r23.ifc"},
     {'name': "VIVIENDA CURSO IFC JS",'number': "5", 'loader': "ifc_loader/ifc-viewer", 'model': "01.ifc"},
     {'name': "SOLEAMIENTO VALENCIA",'number': "6", 'loader': "sun_loader/sun-viewer", 'model': "sun_valencia.3dm"},
-    {'name': "CONSTRUCCIÓN PISITO",'number': "7", 'loader': "ifc_construction/ifc_construction", 'model': "01.ifc"},
+    {'name': "CONSTRUCCIÓN PISITO",'number': "7", 'loader': "ifc_construction/ifc-construction", 'model': "Futuro Pisito_rvt20.ifc"},
     {'name': "CONSTRUCCIÓN PISITO VISOR",'number': "8", 'loader': "ifc_loader/ifc-viewer", 'model': "Futuro Pisito_rvt20.ifc"},
 // {'name': "VIU I CONVIU",'number': "4", 'loader': "ifc_loader/ifc-viewer", 'model': "ARQ.ifc"},
 ];
