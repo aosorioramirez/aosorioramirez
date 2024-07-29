@@ -1,0 +1,21 @@
+{
+  "name": "ifc_construction",
+  "version": "0.0.1",
+  "description": "Prueba de proceso de construcción por fases de modelo IFC",
+  "main": "bundle.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rollup -c",
+    "watch": "rollup -c -w"
+  },
+  "author": "aosorioramirez",
+  "license": "ISC",
+  "dependencies": {
+    "camera-controls": "^2.8.3",
+    "web-ifc-three": "^0.0.117"
+  },
+  "devDependencies": {
+    "@rollup/plugin-node-resolve": "^13.0.2",
+    "rollup": "^2.45.2"
+  }
+}

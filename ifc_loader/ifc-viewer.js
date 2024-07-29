@@ -169,6 +169,7 @@ let projectCategoriesNames = [];
 
 async function loadIfc() {
   ifcModel = await ifcLoader.loadAsync(`./loaders/${currentProject.model}`);
+  // ifcModel = await ifcLoader.loadAsync(`./loaders/Futuro Pisito_rvt20.ifc`);
   scene.add(ifcModel);
   ifcModel.castShadow = true;
 

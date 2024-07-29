@@ -1,0 +1,416 @@
+/*Para todo el proeycto*/
+* {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  box-sizing: border-box;
+}
+
+#logo {
+  filter: invert(1);
+  mix-blend-mode: difference;
+  height: 30px;
+  font-size: 50px;
+  background-color: rgba(255, 255, 255, 0);
+  position: fixed;
+  padding: 5px;
+  margin: auto;
+  float: left;
+  text-align: left;
+  left: 1rem;
+  top: 1rem;
+  z-index: 20;
+  user-select: none;
+}
+#logo:hover {
+  cursor: pointer;
+  animation-name: estira;
+}
+#mueve:hover {
+  animation-name: estira 0.5s;
+}
+
+@keyframes estira {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.2);
+  }
+}
+
+/* BACK ------------------------------------------------------------- */
+#backContainer {
+  z-index: 11;
+  position: fixed;
+  top: 80px;
+  left: 20px;
+  width: 80px;
+  height: 20px;
+  text-align: left;
+  border-radius: 20px;
+  transition: all 0.5s;
+  color: rgb(122, 122, 122);
+  display: flex;
+  align-content: center;
+  user-select: none;
+}
+#backContainer:hover {
+  color: rgb(87, 87, 87);
+  background-color: #ffffffc2;
+  box-shadow: 0px 1px 2px 1px #3fbfbf82;
+  cursor: pointer;
+}
+#back {
+  z-index: 11;
+  pointer-events: visible;
+  width: 80px;
+  position: absolute;
+  color: rgb(202, 202, 202);
+  transition: all 0.5s;
+}
+#back:hover {
+  color: rgba(63, 191, 191, 0.51);
+  transform: translateX(25px);
+  cursor: pointer;
+  visibility: visible;
+}
+#backArrow {
+  position: absolute;
+  align-content: center;
+  transition: all 0.5s;
+  width: 80px;
+  left: -10px;
+  text-align: center;
+  opacity: 0;
+}
+#backArrow:hover {
+  transform: translateX(-40px);
+  opacity: 1;
+  color: #3fbfbf82;
+}
+
+/* DESPLEGABLE CHECKBOXES------------------------------------------------------------- */
+.collapsible {
+  position: fixed;
+  display: flex;
+  background-color: #ffffffde;
+  box-shadow: 0px 1px 2px 1px rgb(202, 202, 202);
+  color: rgb(202, 202, 202);
+  border-radius: 20px;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  font-size: 15px;
+  width: 50px;
+  top: auto;
+  bottom: 100px;
+  height: 35px;
+  transition: all 0.5s;
+  z-index: 2;
+  align-content: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  user-select: none;
+}
+
+img {
+  transform: scale(0.04);
+  filter: grayscale(100%) brightness(105%);
+  transition: all 0.5s;
+}
+
+img:hover {
+  filter: none;
+  filter: grayscale(50%);
+  transition: all 0.5s;
+}
+
+.coll1 {
+  right: 5vw;
+}
+
+.coll2 {
+  left: 2vw;
+}
+
+.active {
+  background-color: #ffffffde;
+  box-shadow: 0px 1px 2px 1px #3fbfbf82;
+  color: #ffffff7d;
+}
+.collapsible:hover {
+  background-color: #ffffff;
+  color: #3fbfbf82;
+  box-shadow: 0px 2px 3px 2px #3fbfbf82;
+}
+
+#checkboxContainer {
+  display: none;
+  align-content: center;
+  position: fixed;
+  background-color: rgba(255, 255, 255, 0.137);
+  backdrop-filter: blur(1px);
+  right: 4vw;
+  top: auto;
+  bottom: 140px;
+  height: 400px;
+  width: 200px;
+}
+
+.checkbox {
+  padding: 0px;
+  display: inline-flex;
+  overflow: hidden;
+  font-size: small;
+  background-color: none;
+  width: 100%;
+  outline: none;
+  width: 200px;
+}
+
+.checkboxText {
+  cursor: pointer;
+}
+
+.input {
+  cursor: pointer;
+}
+
+
+
+/* OTROS ------------------------------------------------------------- */
+.width {
+  width: 95vw;
+  margin-left: 0vw;
+  margin-right: 5vw;
+  user-select: none;
+  position: relative;
+}
+
+#three-canvas {
+  background-color: rgb(255, 255, 255);
+  position: fixed;
+  top: 0px;
+  height: 100%;
+  z-index: 0;
+}
+
+#nombreProyecto {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: rgb(255, 255, 255);
+  height: 50px;
+  top: auto;
+  bottom: 78px;
+  z-index: 1;
+  background-color: rgba(255, 255, 255, 0.137);
+  backdrop-filter: blur(1px);
+  font-family: "Verdana", monospace;
+  font-size: medium;
+}
+
+.container-explicacion {
+  position: absolute;
+  text-align: justify;
+  top: auto;
+  background-color: white;
+  bottom: 0px;
+  height: 90px;
+  z-index: 50;
+}
+
+.hidden {
+  animation-name: collapseAnimation;
+  animation-delay: 2s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes collapseAnimation {
+  from {
+    visibility: visible;
+  }
+  to {
+    visibility: collapse;
+  }
+}
+
+#container-spinner {
+  visibility: collapse;
+  pointer-events: none;
+  background-color: white;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+}
+
+.spinner {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}
+
+.spinner::before,
+.spinner::after {
+  content: "";
+  position: absolute;
+  border-radius: inherit;
+}
+
+.spinner:before {
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(0deg, #ff00cc 0%, #333399 100%);
+  animation: spin8932 0.5s infinite linear;
+}
+
+.spinner:after {
+  width: 85%;
+  height: 85%;
+  background-color: #212121;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@keyframes spin8932 {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+#progress-text {
+  padding: 20px;
+  position: relative;
+  top: 3rem;
+}
+
+/* GUI-CONTAINER ----------------------------------------------------- */
+#gui_container {
+  display: none;
+  position: fixed;
+  top: auto;
+  bottom: 140px;
+  z-index: 15;
+}
+
+.lil-gui {
+  color: #000000;
+  background: none;
+  --tittle-background-color: #3fbfbf00;
+  --widget-color: #3fbfbf18;
+  --hover-color: #4f4f4f14;
+  --focus-color: #4f4f4f14;
+  --number-color: #000000;
+}
+
+.lil-gui .title {
+  --title-height: 0px;
+}
+
+.lil-gui .controller .name {
+  text-align: right;
+}
+
+.lil-gui .controller.number .slider {
+  background-color: #ffffff76;
+}
+.lil-gui .controller.number .slider:hover {
+  background-color: #f0f0f076;
+}
+
+.lil-gui input {
+  text-align: center;
+  width: 10px;
+  color: #000000;
+  background-color: #ffffff76 ;
+}
+
+.title {
+  background: none;
+  visibility: collapse;
+  --tittle-background-color: #3fbfbf00;
+}
+
+.lil-gui.autoPlace {
+  top: auto;
+  margin-bottom: 2px;
+  bottom: 140px;
+  left: -55px;
+  background-color: rgba(255, 255, 255, 0.137);
+  backdrop-filter: blur(1px);
+}
+
+
+
+/* MEDIA ------------------------------------------------------------- */
+@media only screen and (orientation: portrait){
+}
+
+
+
+/* IFC TREE ---------------------------------------------------*/
+
+/* #ifc-tree-menu {
+    position: relative;
+    overflow-y: scroll;
+    float: right;
+    right: 0;
+    background-color: white;
+    top: 40px;
+    width: 30%;
+    margin-top: 150px;
+    height: 100vh;
+    padding: 10px;
+    border: solid 1px greenyellow;
+} */
+
+/* Remove default bullets */
+/* ul, */
+/* #myUL {
+  list-style-type: none;
+  padding-left: 20px;
+  padding-top: 10px;
+} */
+
+/* Remove margins and padding from the parent ul */
+/* #myUL {
+  margin: 0;
+  padding: 0;
+} */
+
+/* Style the caret/arrow */
+/* .caret {
+  cursor: pointer;
+  user-select: none;
+} */
+
+/* Create the caret/arrow with a unicode, and style it */
+/* .caret::before {
+  content: "\25B6";
+  color: rgb(0, 138, 176);
+  display: inline-block;
+  margin-right: 6px;
+} */
+
+/* Rotate the caret/arrow icon when clicked on (using JavaScript) */
+/* .caret-down::before {
+  transform: rotate(90deg);
+} */
+
+/* Hide the nested list */
+/* .nested {
+  display: none;
+  margin-left: 0.2rem;
+} */
+
+/* Show the nested list when the user clicks on the caret/arrow (with JavaScript) */
+/* .active {
+  display: block;
+} */
+

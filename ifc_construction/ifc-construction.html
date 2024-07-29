@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="construction-style.css" />
+    <title>AOR-STUDIO | Página Oficial de Adrián Osorio Ramírez</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐻</text></svg>"
+    />
+    <!--<link rel="shortcut icon" content="🐻" />-->
+  </head>
+  <body>
+    <div id="logo">
+      <span>AOR</span>
+    </div>
+
+    <div id="backContainer" type="button" value="Back">
+      <span id="back">
+        BACK
+        <span id="backArrow">←</span>
+      </span>
+    </div>
+
+    <!-- <input type="file" id="file-input"> -->
+
+    <canvas id="three-canvas" class="width"></canvas>
+
+    <h2 id="nombreProyecto" class="width"></h2>
+
+    <div>
+      <div class="container-explicacion width" style="text-align: center;">
+        --Descripción del proyecto en proceso--
+      </div>
+    </div>
+    
+
+    <button type="button" class="collapsible coll1">
+      <img src="../src/svg/layer-svgrepo-com.svg" alt="Categories"/>
+    </button>
+    <div id="checkboxContainer">
+    </div>
+    
+    <button type="button" class="collapsible coll2">
+      <img src="../src/svg/section-svgrepo-com.svg" alt="Clipping Plane"/>
+    </button>
+    <div id="gui_container">
+    </div>
+
+    <div id="container-spinner" class="width">
+      <div class="spinner"></div>
+      <p id="progress-text"></p>
+    </div>
+
+    <script src="bundle.js"></script>
+  </body>
+</html>

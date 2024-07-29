@@ -83220,12 +83220,14 @@ function disposeBoundsTree() {
 }
 
 const nombresProyectos = [
-    {'name': "TFM: ESTRUCTURAS TENSEGRITY",'number': "1", 'loader': "3dm_loader/3dm-viewer.html", 'model': "Tensegrity.3dm"},
+    {'name': "TFM: ESTRUCTURAS TENSEGRITY",'number': "1", 'loader': "3dm_loader/3dm-viewer", 'model': "Tensegrity.3dm"},
     {'name': "TFM: ESTRUCTURAS HINCHABLES",'number': "2", 'loader': "3dm_loader/3dm-viewer", 'model': "Hinchable.3dm"},
     {'name': "TFM: PARABOLOIDES HORMIGÓN",'number': "3", 'loader': "3dm_loader/3dm-viewer", 'model': "Cascarones.3dm"},
     {'name': "VIVIENDA AZOTEA",'number': "4", 'loader': "ifc_loader/ifc-viewer", 'model': "2203_BAS_v2_r23.ifc"},
-    {'name': "VIVIENDA CURSO IFC JS",'number': "5", 'loader': "ifc_loader/ifc-viewer.html", 'model': "01.ifc"},
+    {'name': "VIVIENDA CURSO IFC JS",'number': "5", 'loader': "ifc_loader/ifc-viewer", 'model': "01.ifc"},
     {'name': "SOLEAMIENTO VALENCIA",'number': "6", 'loader': "sun_loader/sun-viewer", 'model': "sun_valencia.3dm"},
+    {'name': "CONSTRUCCIÓN PISITO",'number': "7", 'loader': "ifc_construction/ifc_construction", 'model': "01.ifc"},
+    {'name': "CONSTRUCCIÓN PISITO VISOR",'number': "8", 'loader': "ifc_loader/ifc-viewer", 'model': "Futuro Pisito_rvt20.ifc"},
 // {'name': "VIU I CONVIU",'number': "4", 'loader': "ifc_loader/ifc-viewer", 'model': "ARQ.ifc"},
 ];
 
@@ -83341,6 +83343,7 @@ let projectCategoriesNames = [];
 
 async function loadIfc() {
   ifcModel = await ifcLoader.loadAsync(`./loaders/${currentProject.model}`);
+  // ifcModel = await ifcLoader.loadAsync(`./loaders/Futuro Pisito_rvt20.ifc`);
   scene.add(ifcModel);
   ifcModel.castShadow = true;
   ifcModel.removeFromParent();
