@@ -55,11 +55,11 @@ import { MeshLambertMaterial } from "three";
 import { nombresProyectos, nombresEspecialidades } from "../info.js";
 
 
-// const currentProjectNumber = localStorage.getItem("projectNumber");
-// const currentProject = nombresProyectos[currentProjectNumber-1];
+const currentProjectNumber = localStorage.getItem("projectNumber");
+const currentProject = nombresProyectos[currentProjectNumber-1];
 
-// const nombreProyecto = document.getElementById("nombreProyecto");
-// nombreProyecto.textContent = `${currentProject.name}`;
+const nombreProyecto = document.getElementById("nombreProyecto");
+nombreProyecto.textContent = `${currentProject.name}`;
 
 //Creates the Three.js scene
 const scene = new Scene();
@@ -168,8 +168,8 @@ let projectCategoriesSet = {};
 let projectCategoriesNames = [];
 
 async function loadIfc() {
-  // ifcModel = await ifcLoader.loadAsync(`./loaders/${currentProject.model}`);
-  ifcModel = await ifcLoader.loadAsync(`./loaders/Futuro Pisito_rvt20.ifc`);
+  ifcModel = await ifcLoader.loadAsync(`./loaders/${currentProject.model}`);
+  // ifcModel = await ifcLoader.loadAsync(`./loaders/Futuro Pisito_rvt20.ifc`);
   scene.add(ifcModel);
   ifcModel.castShadow = true;
 
@@ -226,9 +226,9 @@ async function loadIfc() {
 }
 
 
-// async function readWasm(){
-//   await ifcLoader.ifcManager.setWasmPath("./web help/");
-// }
+async function readWasm(){
+  await ifcLoader.ifcManager.setWasmPath("./web help/");
+}
 
 function setupProgressNotification() {
   const text = document.getElementById('progress-text');
