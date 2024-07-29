@@ -83219,23 +83219,11 @@ function disposeBoundsTree() {
 
 }
 
-const nombresProyectos = [
-    {'name': "TFM: ESTRUCTURAS TENSEGRITY",'number': "1", 'loader': "3dm_loader/3dm-viewer", 'model': "Tensegrity.3dm"},
-    {'name': "TFM: ESTRUCTURAS HINCHABLES",'number': "2", 'loader': "3dm_loader/3dm-viewer", 'model': "Hinchable.3dm"},
-    {'name': "TFM: PARABOLOIDES HORMIGÓN",'number': "3", 'loader': "3dm_loader/3dm-viewer", 'model': "Cascarones.3dm"},
-    {'name': "VIVIENDA AZOTEA",'number': "4", 'loader': "ifc_loader/ifc-viewer", 'model': "2203_BAS_v2_r23.ifc"},
-    {'name': "VIVIENDA CURSO IFC JS",'number': "5", 'loader': "ifc_loader/ifc-viewer", 'model': "01.ifc"},
-    {'name': "SOLEAMIENTO VALENCIA",'number': "6", 'loader': "sun_loader/sun-viewer", 'model': "sun_valencia.3dm"},
-    {'name': "CONSTRUCCIÓN PISITO",'number': "7", 'loader': "ifc_construction/ifc-construction", 'model': "Futuro Pisito_rvt20.ifc"},
-    {'name': "CONSTRUCCIÓN PISITO VISOR",'number': "8", 'loader': "ifc_loader/ifc-viewer", 'model': "Futuro Pisito_rvt20.ifc"},
-// {'name': "VIU I CONVIU",'number': "4", 'loader': "ifc_loader/ifc-viewer", 'model': "ARQ.ifc"},
-];
+// const currentProjectNumber = localStorage.getItem("projectNumber");
+// const currentProject = nombresProyectos[currentProjectNumber-1];
 
-const currentProjectNumber = localStorage.getItem("projectNumber");
-const currentProject = nombresProyectos[currentProjectNumber-1];
-
-const nombreProyecto = document.getElementById("nombreProyecto");
-nombreProyecto.textContent = `${currentProject.name}`;
+// const nombreProyecto = document.getElementById("nombreProyecto");
+// nombreProyecto.textContent = `${currentProject.name}`;
 
 //Creates the Three.js scene
 const scene = new Scene();
@@ -83313,11 +83301,6 @@ window.addEventListener("resize", () => {
 const ifcLoader = new IFCLoader();
 
 
-async function setUpMultiThreading() {
-  const manager = ifcLoader.ifcManager;
-  await manager.useWebWorkers(true, './IFCWorker.js');
-}
-
 ifcLoader.ifcManager.setupThreeMeshBVH(
   computeBoundsTree,
   disposeBoundsTree,
@@ -83341,16 +83324,20 @@ let projectCategoriesNo = [
 let projectCategoriesSet = {};
 let projectCategoriesNames = [];
 
+////////////////////////////////////IFC LOADER/////////////////////////////////////////////////////////////////
+////////////////////////////////////IFC LOADER/////////////////////////////////////////////////////////////////
+////////////////////////////////////IFC LOADER/////////////////////////////////////////////////////////////////
+
 async function loadIfc() {
-  ifcModel = await ifcLoader.loadAsync(`./loaders/${currentProject.model}`);
-  // ifcModel = await ifcLoader.loadAsync(`./loaders/Futuro Pisito_rvt20.ifc`);
+  // ifcModel = await ifcLoader.loadAsync(`./loaders/${currentProject.model}`);
+  ifcModel = await ifcLoader.loadAsync(`./loaders/Futuro Pisito_rvt20.ifc`);
   scene.add(ifcModel);
   ifcModel.castShadow = true;
   ifcModel.removeFromParent();
 
   await getAllModelCategories(ifcModel);
 
-  // console.log(ifcModel);
+  console.log(ifcModel);
 
   let projectCategoriesYes = projectCategoriesNames.filter(x=> !projectCategoriesNo.includes(x));
 
@@ -83397,11 +83384,6 @@ async function loadIfc() {
   });
 }
 
-
-async function readWasm(){
-  await ifcLoader.ifcManager.setWasmPath("./web help/");
-}
-
 function setupProgressNotification() {
   const text = document.getElementById('progress-text');
   const containerSpinner = document.getElementById('container-spinner');
@@ -83415,6 +83397,16 @@ function setupProgressNotification() {
 
 
 loadIfc();
+
+async function setUpMultiThreading() {
+  const manager = ifcLoader.ifcManager;
+  await manager.useWebWorkers(true, './IFCWorker.js');
+}
+
+async function readWasm(){
+  await ifcLoader.ifcManager.setWasmPath("./web help/");
+}
+
 readWasm();
 setUpMultiThreading();
 setupProgressNotification();

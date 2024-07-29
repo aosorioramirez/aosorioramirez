@@ -55,11 +55,11 @@ import { MeshLambertMaterial } from "three";
 import { nombresProyectos, nombresEspecialidades } from "../info.js";
 
 
-const currentProjectNumber = localStorage.getItem("projectNumber");
-const currentProject = nombresProyectos[currentProjectNumber-1];
+// const currentProjectNumber = localStorage.getItem("projectNumber");
+// const currentProject = nombresProyectos[currentProjectNumber-1];
 
-const nombreProyecto = document.getElementById("nombreProyecto");
-nombreProyecto.textContent = `${currentProject.name}`;
+// const nombreProyecto = document.getElementById("nombreProyecto");
+// nombreProyecto.textContent = `${currentProject.name}`;
 
 //Creates the Three.js scene
 const scene = new Scene();
@@ -137,11 +137,6 @@ window.addEventListener("resize", () => {
 const ifcLoader = new IFCLoader();
 
 
-async function setUpMultiThreading() {
-  const manager = ifcLoader.ifcManager;
-  await manager.useWebWorkers(true, './IFCWorker.js');
-}
-
 ifcLoader.ifcManager.setupThreeMeshBVH(
   computeBoundsTree,
   disposeBoundsTree,
@@ -167,9 +162,13 @@ let projectCategoriesNo = [
 let projectCategoriesSet = {};
 let projectCategoriesNames = [];
 
+////////////////////////////////////IFC LOADER/////////////////////////////////////////////////////////////////
+////////////////////////////////////IFC LOADER/////////////////////////////////////////////////////////////////
+////////////////////////////////////IFC LOADER/////////////////////////////////////////////////////////////////
+
 async function loadIfc() {
-  ifcModel = await ifcLoader.loadAsync(`./loaders/${currentProject.model}`);
-  // ifcModel = await ifcLoader.loadAsync(`./loaders/Futuro Pisito_rvt20.ifc`);
+  // ifcModel = await ifcLoader.loadAsync(`./loaders/${currentProject.model}`);
+  ifcModel = await ifcLoader.loadAsync(`./loaders/Futuro Pisito_rvt20.ifc`);
   scene.add(ifcModel);
   ifcModel.castShadow = true;
 
@@ -178,7 +177,7 @@ async function loadIfc() {
 
   await getAllModelCategories(ifcModel);
 
-  // console.log(ifcModel);
+  console.log(ifcModel);
 
   let projectCategoriesYes = projectCategoriesNames.filter(x=> !projectCategoriesNo.includes(x));
 
@@ -225,11 +224,6 @@ async function loadIfc() {
   });
 }
 
-
-async function readWasm(){
-  await ifcLoader.ifcManager.setWasmPath("./web help/");
-}
-
 function setupProgressNotification() {
   const text = document.getElementById('progress-text');
   const containerSpinner = document.getElementById('container-spinner');
@@ -244,6 +238,16 @@ function setupProgressNotification() {
 
 
 loadIfc();
+
+async function setUpMultiThreading() {
+  const manager = ifcLoader.ifcManager;
+  await manager.useWebWorkers(true, './IFCWorker.js');
+}
+
+async function readWasm(){
+  await ifcLoader.ifcManager.setWasmPath("./web help/");
+}
+
 readWasm();
 setUpMultiThreading();
 setupProgressNotification();
