@@ -1,5 +1,5 @@
 {
-  "name": "ifc_construction",
+  "name": "ifc-construction",
   "version": "0.0.1",
   "description": "Prueba de proceso de construcción por fases de modelo IFC",
   "main": "bundle.js",

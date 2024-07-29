@@ -237,7 +237,6 @@ img:hover {
 }
 
 #container-spinner {
-  visibility: collapse;
   pointer-events: none;
   background-color: white;
   height: 100%;
